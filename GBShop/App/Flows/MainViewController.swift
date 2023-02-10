@@ -8,6 +8,10 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    
+    // MARK: - Properties
+    
+    private let requestFactory = RequestFactory()
 
     // MARK: - Life cycle
     
@@ -15,5 +19,21 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .red
+        auth()
+    }
+    
+    // MARK: - Functions
+    
+    func auth() {
+        let auth = requestFactory.makeAuthRequestFactory()
+        auth.login(username: "Somebody",
+                   password: "mypassword") { response in
+            switch response.result {
+            case .success(let login):
+                print(login)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
