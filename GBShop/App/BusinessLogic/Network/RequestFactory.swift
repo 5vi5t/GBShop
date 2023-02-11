@@ -23,7 +23,7 @@ class RequestFactory {
     
     // MARK: - Functions
     
-    func makeErrorParser() -> AbstractErrorParser {
+    private func makeErrorParser() -> AbstractErrorParser {
         return ErrorParser()
     }
     
@@ -35,5 +35,15 @@ class RequestFactory {
     func makeDeauthRequestFactory() -> DeauthRequestFactory {
         let errorParser = makeErrorParser()
         return Deauth(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+    
+    func makeRegRequestFactory() -> RegRequestFactory {
+        let errorParser = makeErrorParser()
+        return Reg(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+    
+    func makeEditProfileRequestFactory() -> EditProfileRequestFactory {
+        let errorParser = makeErrorParser()
+        return EditProfile(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
     }
 }

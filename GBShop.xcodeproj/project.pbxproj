@@ -16,6 +16,12 @@
 		A4AF0F292992D7AF00882F7B /* GBShopUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AF0F282992D7AF00882F7B /* GBShopUITestsLaunchTests.swift */; };
 		A4B49F9329975A9E0072913C /* Deauth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B49F9229975A9E0072913C /* Deauth.swift */; };
 		A4C0FCB92992E380006F02DF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C0FCB82992E380006F02DF /* MainViewController.swift */; };
+		A4E9E64029979600007F9DFE /* RegRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E9E63F29979600007F9DFE /* RegRequestFactory.swift */; };
+		A4E9E64229979750007F9DFE /* RegisterUserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E9E64129979750007F9DFE /* RegisterUserResult.swift */; };
+		A4E9E644299797F7007F9DFE /* Reg.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E9E643299797F7007F9DFE /* Reg.swift */; };
+		A4E9E64729979F73007F9DFE /* EditProfileRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E9E64629979F73007F9DFE /* EditProfileRequestFactory.swift */; };
+		A4E9E6492997A07C007F9DFE /* ChangeUserDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E9E6482997A07C007F9DFE /* ChangeUserDataResult.swift */; };
+		A4E9E64B2997A0CC007F9DFE /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E9E64A2997A0CC007F9DFE /* EditProfile.swift */; };
 		A4F675282996449300B0F5B7 /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F675272996449300B0F5B7 /* AbstractErrorParser.swift */; };
 		A4F6752A2996451700B0F5B7 /* ErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F675292996451700B0F5B7 /* ErrorParser.swift */; };
 		A4F6752C2996469D00B0F5B7 /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F6752B2996469D00B0F5B7 /* DataRequest.swift */; };
@@ -62,6 +68,12 @@
 		A4AF0F282992D7AF00882F7B /* GBShopUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBShopUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A4B49F9229975A9E0072913C /* Deauth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deauth.swift; sourceTree = "<group>"; };
 		A4C0FCB82992E380006F02DF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A4E9E63F29979600007F9DFE /* RegRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegRequestFactory.swift; sourceTree = "<group>"; };
+		A4E9E64129979750007F9DFE /* RegisterUserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserResult.swift; sourceTree = "<group>"; };
+		A4E9E643299797F7007F9DFE /* Reg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reg.swift; sourceTree = "<group>"; };
+		A4E9E64629979F73007F9DFE /* EditProfileRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRequestFactory.swift; sourceTree = "<group>"; };
+		A4E9E6482997A07C007F9DFE /* ChangeUserDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserDataResult.swift; sourceTree = "<group>"; };
+		A4E9E64A2997A0CC007F9DFE /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		A4F675272996449300B0F5B7 /* AbstractErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractErrorParser.swift; sourceTree = "<group>"; };
 		A4F675292996451700B0F5B7 /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		A4F6752B2996469D00B0F5B7 /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
@@ -177,6 +189,8 @@
 				A4F675342996703800B0F5B7 /* LoginResult.swift */,
 				A4F675362996708300B0F5B7 /* User.swift */,
 				A4F675432996B87E00B0F5B7 /* LogoutResult.swift */,
+				A4E9E64129979750007F9DFE /* RegisterUserResult.swift */,
+				A4E9E6482997A07C007F9DFE /* ChangeUserDataResult.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -221,6 +235,24 @@
 			path = Environments;
 			sourceTree = "<group>";
 		};
+		A4E9E63E299795B6007F9DFE /* Reg */ = {
+			isa = PBXGroup;
+			children = (
+				A4E9E63F29979600007F9DFE /* RegRequestFactory.swift */,
+				A4E9E643299797F7007F9DFE /* Reg.swift */,
+			);
+			path = Reg;
+			sourceTree = "<group>";
+		};
+		A4E9E64529979F5F007F9DFE /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				A4E9E64629979F73007F9DFE /* EditProfileRequestFactory.swift */,
+				A4E9E64A2997A0CC007F9DFE /* EditProfile.swift */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
 		A4F675262996447900B0F5B7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +268,8 @@
 		A4F67538299672BD00B0F5B7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				A4E9E64529979F5F007F9DFE /* EditProfile */,
+				A4E9E63E299795B6007F9DFE /* Reg */,
 				A4F675402996B78F00B0F5B7 /* Deauth */,
 				A4F6753F2996B0BF00B0F5B7 /* Auth */,
 				A4F6753D2996A84A00B0F5B7 /* RequestFactory.swift */,
@@ -402,17 +436,23 @@
 				A4B49F9329975A9E0072913C /* Deauth.swift in Sources */,
 				A4F675422996B7BA00B0F5B7 /* DeauthRequestFactory.swift in Sources */,
 				A4F675442996B87E00B0F5B7 /* LogoutResult.swift in Sources */,
+				A4E9E64029979600007F9DFE /* RegRequestFactory.swift in Sources */,
 				A4F67531299651BC00B0F5B7 /* AbstractRequestFactory.swift in Sources */,
 				A4F6753E2996A84A00B0F5B7 /* RequestFactory.swift in Sources */,
 				A4F6752A2996451700B0F5B7 /* ErrorParser.swift in Sources */,
 				A4C0FCB92992E380006F02DF /* MainViewController.swift in Sources */,
+				A4E9E64729979F73007F9DFE /* EditProfileRequestFactory.swift in Sources */,
 				A4AF0F062992D7AD00882F7B /* AppDelegate.swift in Sources */,
+				A4E9E6492997A07C007F9DFE /* ChangeUserDataResult.swift in Sources */,
 				A4F6752C2996469D00B0F5B7 /* DataRequest.swift in Sources */,
 				A4F675352996703800B0F5B7 /* LoginResult.swift in Sources */,
 				A4AF0F082992D7AD00882F7B /* SceneDelegate.swift in Sources */,
 				A4F675372996708300B0F5B7 /* User.swift in Sources */,
+				A4E9E644299797F7007F9DFE /* Reg.swift in Sources */,
 				A4F675282996449300B0F5B7 /* AbstractErrorParser.swift in Sources */,
+				A4E9E64229979750007F9DFE /* RegisterUserResult.swift in Sources */,
 				A4F6753C2996741800B0F5B7 /* Auth.swift in Sources */,
+				A4E9E64B2997A0CC007F9DFE /* EditProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
