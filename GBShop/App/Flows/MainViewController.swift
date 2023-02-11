@@ -20,6 +20,8 @@ class MainViewController: UIViewController {
 
         view.backgroundColor = .red
         auth()
+        sleep(1)
+        deauth()
     }
     
     // MARK: - Functions
@@ -31,6 +33,18 @@ class MainViewController: UIViewController {
             switch response.result {
             case .success(let login):
                 print(login)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func deauth() {
+        let deauth = requestFactory.makeDeauthRequestFactory()
+        deauth.logout(userId: 123) { response in
+            switch response.result {
+            case .success(let logout):
+                print(logout)
             case .failure(let error):
                 print(error)
             }

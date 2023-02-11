@@ -31,4 +31,9 @@ class RequestFactory {
         let errorParser = makeErrorParser()
         return Auth(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
     }
+    
+    func makeDeauthRequestFactory() -> DeauthRequestFactory {
+        let errorParser = makeErrorParser()
+        return Deauth(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
 }
