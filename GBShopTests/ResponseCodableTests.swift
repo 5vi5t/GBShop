@@ -32,7 +32,7 @@ struct ErrorParserStub: AbstractErrorParser {
 
 final class ResponseCodableTests: XCTestCase {
     
-    let expectation = XCTestExpectation(description: "Download https://failUrl")
+    let expectation = XCTestExpectation(description: #function)
     var errorParser: ErrorParserStub!
     
     override func setUpWithError() throws {
@@ -48,11 +48,11 @@ final class ResponseCodableTests: XCTestCase {
             .responseCodable(errorParser: errorParser) { [weak self] (response: DataResponse<PostStub, AFError>) in
                 switch response.result {
                 case .success(_):
-                    self?.expectation.fulfill()
                     break
-                case .failure(let error):
-                    XCTFail(error.localizedDescription)
+                case .failure(_):
+                    XCTFail()
                 }
+                self?.expectation.fulfill()
             }
         wait(for: [expectation], timeout: 10.0)
     }
