@@ -46,4 +46,14 @@ class RequestFactory {
         let errorParser = makeErrorParser()
         return EditProfile(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
     }
+    
+    func makeGetGoodsListRequestFactory() -> GetGoodsListRequestFactory {
+        let errorParser = makeErrorParser()
+        return GetGoodsList(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+    
+    func makeGetGoodRequestFactory() -> GetGoodRequestFactory {
+        let errorParser = makeErrorParser()
+        return GetGood(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
 }

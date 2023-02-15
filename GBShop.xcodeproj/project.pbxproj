@@ -11,6 +11,14 @@
 		A497C816299D4A00003FD0F6 /* DeauthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497C815299D4A00003FD0F6 /* DeauthTests.swift */; };
 		A497C818299D4A0D003FD0F6 /* RegTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497C817299D4A0D003FD0F6 /* RegTests.swift */; };
 		A497C81A299D4A1D003FD0F6 /* EditProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497C819299D4A1D003FD0F6 /* EditProfileTests.swift */; };
+		A497C81E299D6576003FD0F6 /* GetGoodsListRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497C81D299D6576003FD0F6 /* GetGoodsListRequestFactory.swift */; };
+		A497C820299D663E003FD0F6 /* CatalogDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497C81F299D663D003FD0F6 /* CatalogDataResult.swift */; };
+		A497C822299D6734003FD0F6 /* GetGoodsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497C821299D6734003FD0F6 /* GetGoodsList.swift */; };
+		A497C824299D6952003FD0F6 /* GetGoodRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497C823299D6952003FD0F6 /* GetGoodRequestFactory.swift */; };
+		A497C826299D6963003FD0F6 /* GetGood.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497C825299D6963003FD0F6 /* GetGood.swift */; };
+		A497C828299D6A14003FD0F6 /* GetGoodByIdResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497C827299D6A14003FD0F6 /* GetGoodByIdResult.swift */; };
+		A497C82A299D6F68003FD0F6 /* GetGoodsListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497C829299D6F68003FD0F6 /* GetGoodsListTests.swift */; };
+		A497C82C299D6F74003FD0F6 /* GetGoodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497C82B299D6F74003FD0F6 /* GetGoodTests.swift */; };
 		A4AF0F062992D7AD00882F7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AF0F052992D7AD00882F7B /* AppDelegate.swift */; };
 		A4AF0F082992D7AD00882F7B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AF0F072992D7AD00882F7B /* SceneDelegate.swift */; };
 		A4AF0F0F2992D7AF00882F7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4AF0F0E2992D7AF00882F7B /* Assets.xcassets */; };
@@ -63,6 +71,14 @@
 		A497C815299D4A00003FD0F6 /* DeauthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeauthTests.swift; sourceTree = "<group>"; };
 		A497C817299D4A0D003FD0F6 /* RegTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegTests.swift; sourceTree = "<group>"; };
 		A497C819299D4A1D003FD0F6 /* EditProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTests.swift; sourceTree = "<group>"; };
+		A497C81D299D6576003FD0F6 /* GetGoodsListRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGoodsListRequestFactory.swift; sourceTree = "<group>"; };
+		A497C81F299D663D003FD0F6 /* CatalogDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogDataResult.swift; sourceTree = "<group>"; };
+		A497C821299D6734003FD0F6 /* GetGoodsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGoodsList.swift; sourceTree = "<group>"; };
+		A497C823299D6952003FD0F6 /* GetGoodRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGoodRequestFactory.swift; sourceTree = "<group>"; };
+		A497C825299D6963003FD0F6 /* GetGood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGood.swift; sourceTree = "<group>"; };
+		A497C827299D6A14003FD0F6 /* GetGoodByIdResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGoodByIdResult.swift; sourceTree = "<group>"; };
+		A497C829299D6F68003FD0F6 /* GetGoodsListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGoodsListTests.swift; sourceTree = "<group>"; };
+		A497C82B299D6F74003FD0F6 /* GetGoodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGoodTests.swift; sourceTree = "<group>"; };
 		A4AF0F022992D7AD00882F7B /* GBShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4AF0F052992D7AD00882F7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4AF0F072992D7AD00882F7B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +138,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A497C81B299D601F003FD0F6 /* GetGoodsList */ = {
+			isa = PBXGroup;
+			children = (
+				A497C81D299D6576003FD0F6 /* GetGoodsListRequestFactory.swift */,
+				A497C821299D6734003FD0F6 /* GetGoodsList.swift */,
+			);
+			path = GetGoodsList;
+			sourceTree = "<group>";
+		};
+		A497C81C299D6521003FD0F6 /* GetGood */ = {
+			isa = PBXGroup;
+			children = (
+				A497C823299D6952003FD0F6 /* GetGoodRequestFactory.swift */,
+				A497C825299D6963003FD0F6 /* GetGood.swift */,
+			);
+			path = GetGood;
+			sourceTree = "<group>";
+		};
 		A4AF0EF92992D7AD00882F7B = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +195,8 @@
 				A497C815299D4A00003FD0F6 /* DeauthTests.swift */,
 				A497C817299D4A0D003FD0F6 /* RegTests.swift */,
 				A497C819299D4A1D003FD0F6 /* EditProfileTests.swift */,
+				A497C829299D6F68003FD0F6 /* GetGoodsListTests.swift */,
+				A497C82B299D6F74003FD0F6 /* GetGoodTests.swift */,
 			);
 			path = GBShopTests;
 			sourceTree = "<group>";
@@ -203,6 +239,8 @@
 				A4F675432996B87E00B0F5B7 /* LogoutResult.swift */,
 				A4E9E64129979750007F9DFE /* RegisterUserResult.swift */,
 				A4E9E6482997A07C007F9DFE /* ChangeUserDataResult.swift */,
+				A497C81F299D663D003FD0F6 /* CatalogDataResult.swift */,
+				A497C827299D6A14003FD0F6 /* GetGoodByIdResult.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -280,6 +318,8 @@
 		A4F67538299672BD00B0F5B7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				A497C81C299D6521003FD0F6 /* GetGood */,
+				A497C81B299D601F003FD0F6 /* GetGoodsList */,
 				A4E9E64529979F5F007F9DFE /* EditProfile */,
 				A4E9E63E299795B6007F9DFE /* Reg */,
 				A4F675402996B78F00B0F5B7 /* Deauth */,
@@ -443,24 +483,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A497C826299D6963003FD0F6 /* GetGood.swift in Sources */,
+				A497C824299D6952003FD0F6 /* GetGoodRequestFactory.swift in Sources */,
 				A4F6753A299672D300B0F5B7 /* AuthRequestFactory.swift in Sources */,
 				A4F675332996681500B0F5B7 /* RequestRouter.swift in Sources */,
 				A4B49F9329975A9E0072913C /* Deauth.swift in Sources */,
 				A4F675422996B7BA00B0F5B7 /* DeauthRequestFactory.swift in Sources */,
 				A4F675442996B87E00B0F5B7 /* LogoutResult.swift in Sources */,
 				A4E9E64029979600007F9DFE /* RegRequestFactory.swift in Sources */,
+				A497C820299D663E003FD0F6 /* CatalogDataResult.swift in Sources */,
 				A4F67531299651BC00B0F5B7 /* AbstractRequestFactory.swift in Sources */,
 				A4F6753E2996A84A00B0F5B7 /* RequestFactory.swift in Sources */,
 				A4F6752A2996451700B0F5B7 /* ErrorParser.swift in Sources */,
 				A4C0FCB92992E380006F02DF /* MainViewController.swift in Sources */,
 				A4E9E64729979F73007F9DFE /* EditProfileRequestFactory.swift in Sources */,
+				A497C822299D6734003FD0F6 /* GetGoodsList.swift in Sources */,
 				A4AF0F062992D7AD00882F7B /* AppDelegate.swift in Sources */,
 				A4E9E6492997A07C007F9DFE /* ChangeUserDataResult.swift in Sources */,
 				A4F6752C2996469D00B0F5B7 /* DataRequest.swift in Sources */,
 				A4F675352996703800B0F5B7 /* LoginResult.swift in Sources */,
+				A497C81E299D6576003FD0F6 /* GetGoodsListRequestFactory.swift in Sources */,
 				A4AF0F082992D7AD00882F7B /* SceneDelegate.swift in Sources */,
 				A4F675372996708300B0F5B7 /* User.swift in Sources */,
 				A4E9E644299797F7007F9DFE /* Reg.swift in Sources */,
+				A497C828299D6A14003FD0F6 /* GetGoodByIdResult.swift in Sources */,
 				A4F675282996449300B0F5B7 /* AbstractErrorParser.swift in Sources */,
 				A4E9E64229979750007F9DFE /* RegisterUserResult.swift in Sources */,
 				A4F6753C2996741800B0F5B7 /* Auth.swift in Sources */,
@@ -475,6 +521,8 @@
 				A497C81A299D4A1D003FD0F6 /* EditProfileTests.swift in Sources */,
 				A4B6D388299D417900BB156A /* AuthTests.swift in Sources */,
 				A44CF90D299B83D30096691B /* ResponseCodableTests.swift in Sources */,
+				A497C82A299D6F68003FD0F6 /* GetGoodsListTests.swift in Sources */,
+				A497C82C299D6F74003FD0F6 /* GetGoodTests.swift in Sources */,
 				A497C818299D4A0D003FD0F6 /* RegTests.swift in Sources */,
 				A497C816299D4A00003FD0F6 /* DeauthTests.swift in Sources */,
 			);
