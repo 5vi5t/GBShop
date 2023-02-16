@@ -20,7 +20,7 @@ final class EditProfileTests: XCTestCase {
         requestFactory = nil
     }
     
-    func test_editProfileWithValidValues() {
+    func testEditProfileWithValidValues() {
         let userId = 123
         let username = "Somebody"
         let password = "mypassword"

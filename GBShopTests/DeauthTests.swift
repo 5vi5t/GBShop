@@ -20,7 +20,7 @@ final class DeauthTests: XCTestCase {
         requestFactory = nil
     }
     
-    func test_logoutWithValidValues() {
+    func testLogoutWithValidValues() {
         let userId = 123
         let expectation = XCTestExpectation(description: #function)
         let deauth = requestFactory.makeDeauthRequestFactory()

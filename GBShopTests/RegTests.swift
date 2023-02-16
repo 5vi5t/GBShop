@@ -20,7 +20,7 @@ final class RegTests: XCTestCase {
         requestFactory = nil
     }
     
-    func test_regWithValidValues() {
+    func testRegWithValidValues() {
         let userId = 123
         let username = "Somebody"
         let password = "mypassword"

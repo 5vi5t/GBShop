@@ -20,7 +20,7 @@ final class AuthTests: XCTestCase {
         requestFactory = nil
     }
     
-    func test_loginWithValidValues() {
+    func testLoginWithValidValues() {
         let username = "Somebody"
         let password = "mypassword"
         let expectation = XCTestExpectation(description: #function)

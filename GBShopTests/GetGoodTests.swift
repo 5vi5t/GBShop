@@ -20,7 +20,7 @@ final class GetGoodTests: XCTestCase {
         requestFactory = nil
     }
     
-    func test_getGoodWithValidValues() {
+    func testGetGoodWithValidValues() {
         let id = 123
         let expectation = XCTestExpectation(description: #function)
         let getGood = requestFactory.makeGetGoodRequestFactory()

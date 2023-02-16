@@ -43,7 +43,7 @@ final class ResponseCodableTests: XCTestCase {
         errorParser = nil
     }
     
-    func test_shouldDownloadAndParse() {
+    func testShouldDownloadAndParse() {
         AF.request("https://jsonplaceholder.typicode.com/posts/1")
             .responseCodable(errorParser: errorParser) { [weak self] (response: DataResponse<PostStub, AFError>) in
                 switch response.result {

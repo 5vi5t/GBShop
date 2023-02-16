@@ -20,7 +20,7 @@ final class GetGoodsListTests: XCTestCase {
         requestFactory = nil
     }
     
-    func test_getGoodsListWithValidValues() {
+    func testGetGoodsListWithValidValues() {
         let pageNumber = 1
         let categoryId = 1
         let expectation = XCTestExpectation(description: #function)
