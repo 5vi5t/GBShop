@@ -26,6 +26,10 @@ class MainViewController: UIViewController {
         reg()
         sleep(1)
         editProfile()
+        sleep(1)
+        getGoodsList()
+        sleep(1)
+        getGood()
     }
     
     // MARK: - Functions
@@ -91,5 +95,30 @@ class MainViewController: UIViewController {
                     print(error)
                 }
             }
+    }
+    
+    func getGoodsList() {
+        let getGoodsList = requestFactory.makeGetGoodsListRequestFactory()
+        getGoodsList.getCatalogData(pageNumber: 1,
+                                    categoryId: 1) { response in
+            switch response.result {
+            case .success(let goodsList):
+                print(goodsList)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func getGood() {
+        let getGood = requestFactory.makeGetGoodRequestFactory()
+        getGood.getGood(by: 1) { response in
+            switch response.result {
+            case .success(let good):
+                print(good)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
