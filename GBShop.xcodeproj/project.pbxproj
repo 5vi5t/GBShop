@@ -41,7 +41,6 @@
 		A4F67531299651BC00B0F5B7 /* AbstractRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F67530299651BC00B0F5B7 /* AbstractRequestFactory.swift */; };
 		A4F675332996681500B0F5B7 /* RequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F675322996681500B0F5B7 /* RequestRouter.swift */; };
 		A4F675352996703800B0F5B7 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F675342996703800B0F5B7 /* LoginResult.swift */; };
-		A4F675372996708300B0F5B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F675362996708300B0F5B7 /* User.swift */; };
 		A4F6753A299672D300B0F5B7 /* AuthRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F67539299672D300B0F5B7 /* AuthRequestFactory.swift */; };
 		A4F6753C2996741800B0F5B7 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F6753B2996741800B0F5B7 /* Auth.swift */; };
 		A4F6753E2996A84A00B0F5B7 /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F6753D2996A84A00B0F5B7 /* RequestFactory.swift */; };
@@ -104,7 +103,6 @@
 		A4F67530299651BC00B0F5B7 /* AbstractRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractRequestFactory.swift; sourceTree = "<group>"; };
 		A4F675322996681500B0F5B7 /* RequestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRouter.swift; sourceTree = "<group>"; };
 		A4F675342996703800B0F5B7 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
-		A4F675362996708300B0F5B7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A4F67539299672D300B0F5B7 /* AuthRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestFactory.swift; sourceTree = "<group>"; };
 		A4F6753B2996741800B0F5B7 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		A4F6753D2996A84A00B0F5B7 /* RequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 			isa = PBXGroup;
 			children = (
 				A4F675342996703800B0F5B7 /* LoginResult.swift */,
-				A4F675362996708300B0F5B7 /* User.swift */,
 				A4F675432996B87E00B0F5B7 /* LogoutResult.swift */,
 				A4E9E64129979750007F9DFE /* RegisterUserResult.swift */,
 				A4E9E6482997A07C007F9DFE /* ChangeUserDataResult.swift */,
@@ -504,7 +501,6 @@
 				A4F675352996703800B0F5B7 /* LoginResult.swift in Sources */,
 				A497C81E299D6576003FD0F6 /* GetGoodsListRequestFactory.swift in Sources */,
 				A4AF0F082992D7AD00882F7B /* SceneDelegate.swift in Sources */,
-				A4F675372996708300B0F5B7 /* User.swift in Sources */,
 				A4E9E644299797F7007F9DFE /* Reg.swift in Sources */,
 				A497C828299D6A14003FD0F6 /* GetGoodByIdResult.swift in Sources */,
 				A4F675282996449300B0F5B7 /* AbstractErrorParser.swift in Sources */,
