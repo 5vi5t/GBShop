@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 
 class Auth: AbstractRequestFactory {
-    
     // MARK: - Properties
     
     let errorParser: AbstractErrorParser
@@ -18,9 +17,11 @@ class Auth: AbstractRequestFactory {
     
     // MARK: - Construction
     
-    init(errorParser: AbstractErrorParser,
-         sessionManager: Session,
-         queue: DispatchQueue = .global(qos: .utility)) {
+    init(
+        errorParser: AbstractErrorParser,
+        sessionManager: Session,
+        queue: DispatchQueue = .global(qos: .utility)
+    ) {
         self.errorParser = errorParser
         self.sessionManager = sessionManager
         self.queue = queue
@@ -28,7 +29,6 @@ class Auth: AbstractRequestFactory {
 }
 
 extension Auth: AuthRequestFactory {
-    
     // MARK: - Functions
     
     func login(username: String, password: String, completionHandler: @escaping (AFDataResponse<LoginResult>) -> Void) {

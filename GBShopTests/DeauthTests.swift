@@ -9,13 +9,15 @@ import XCTest
 @testable import GBShop
 
 final class DeauthTests: XCTestCase {
-    
+    // swiftlint:disable:next implicitly_unwrapped_optional
     var requestFactory: RequestFactory!
-
+    
+    // swiftlint:disable:next overridden_super_call
     override func setUpWithError() throws {
         requestFactory = RequestFactory()
     }
-
+    
+    // swiftlint:disable:next overridden_super_call
     override func tearDownWithError() throws {
         requestFactory = nil
     }
@@ -30,7 +32,7 @@ final class DeauthTests: XCTestCase {
             case .success(let result):
                 XCTAssertEqual(1, result.result)
                 XCTAssertNil(result.errorMessage)
-            case .failure(_):
+            case .failure:
                 XCTFail()
             }
             expectation.fulfill()
@@ -48,7 +50,7 @@ final class DeauthTests: XCTestCase {
             case .success(let result):
                 XCTAssertEqual(0, result.result)
                 XCTAssertNotNil(result.errorMessage)
-            case .failure(_):
+            case .failure:
                 XCTFail()
             }
             expectation.fulfill()

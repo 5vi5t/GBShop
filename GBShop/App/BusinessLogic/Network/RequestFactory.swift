@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 
 class RequestFactory {
-    
     // MARK: - Properties
     
     lazy var commonSession: Session = {

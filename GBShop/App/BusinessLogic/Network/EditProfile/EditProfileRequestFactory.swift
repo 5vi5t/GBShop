@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 protocol EditProfileRequestFactory {
+    // swiftlint:disable:next function_parameter_count
     func changeUserData(
         userId: Int,
         username: String,
@@ -17,5 +18,6 @@ protocol EditProfileRequestFactory {
         gender: String,
         creditCard: String,
         bio: String,
-        completionHandler: @escaping (AFDataResponse<ChangeUserDataResult>) -> Void)
+        completionHandler: @escaping (AFDataResponse<ChangeUserDataResult>) -> Void
+    )
 }

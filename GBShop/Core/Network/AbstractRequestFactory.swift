@@ -17,7 +17,8 @@ protocol AbstractRequestFactory {
     @discardableResult
     func request<T: Decodable>(
         request: URLRequestConvertible,
-        completionHandler: @escaping (AFDataResponse<T>) -> Void)
+        completionHandler: @escaping (AFDataResponse<T>) -> Void
+    )
     -> DataRequest
 }
 
@@ -25,13 +26,16 @@ extension AbstractRequestFactory {
     @discardableResult
     func request<T: Decodable>(
         request: URLRequestConvertible,
-        completionHandler: @escaping (AFDataResponse<T>) -> Void)
+        completionHandler: @escaping (AFDataResponse<T>) -> Void
+    )
     -> DataRequest {
         return sessionManager
             .request(request)
-            .responseCodable(errorParser: errorParser,
-                             queue: queue,
-                             completionHandler: completionHandler)
+            .responseCodable(
+                errorParser: errorParser,
+                queue: queue,
+                completionHandler: completionHandler
+            )
     }
 }
 
@@ -40,5 +44,3 @@ extension AbstractRequestFactory {
         URL(string: "https://vaporapp-production.up.railway.app/")
     }
 }
-
-

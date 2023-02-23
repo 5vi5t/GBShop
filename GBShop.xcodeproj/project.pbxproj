@@ -351,6 +351,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4AF0F2C2992D7AF00882F7B /* Build configuration list for PBXNativeTarget "GBShop" */;
 			buildPhases = (
+				A4A95D5C29A74C06009DC736 /* Swiftlint */,
 				A4AF0EFE2992D7AD00882F7B /* Sources */,
 				A4AF0EFF2992D7AD00882F7B /* Frameworks */,
 				A4AF0F002992D7AD00882F7B /* Resources */,
@@ -474,6 +475,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A4A95D5C29A74C06009DC736 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH=/opt/homebrew/bin:$PATH\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A4AF0EFE2992D7AD00882F7B /* Sources */ = {

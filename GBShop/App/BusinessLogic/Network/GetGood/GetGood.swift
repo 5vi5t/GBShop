@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 
 class GetGood: AbstractRequestFactory {
-    
     // MARK: - Properties
     
     let errorParser: AbstractErrorParser
@@ -18,9 +17,11 @@ class GetGood: AbstractRequestFactory {
     
     // MARK: - Construction
     
-    init(errorParser: AbstractErrorParser,
-         sessionManager: Session,
-         queue: DispatchQueue = .global(qos: .utility)) {
+    init(
+        errorParser: AbstractErrorParser,
+        sessionManager: Session,
+        queue: DispatchQueue = .global(qos: .utility)
+    ) {
         self.errorParser = errorParser
         self.sessionManager = sessionManager
         self.queue = queue
@@ -35,21 +36,23 @@ extension GetGood {
         let productId: Int
         var parameters: Parameters? {
             return [
-                "id_product" : productId
+                "id_product": productId
             ]
         }
     }
 }
 
 extension GetGood: GetGoodRequestFactory {
-    
     // MARK: - Functions
     
-    func getGood(by id: Int,
-                 completionHandler: @escaping (AFDataResponse<GetGoodByIdResult>) -> Void) {
+    func getGood(
+        by id: Int,
+        completionHandler: @escaping (AFDataResponse<GetGoodByIdResult>) -> Void
+    ) {
         guard let baseUrl else { return }
-        let requestModel = GoodById(baseUrl: baseUrl,
-                                    productId: id)
+        let requestModel = GoodById(
+            baseUrl: baseUrl,
+            productId: id)
         request(request: requestModel, completionHandler: completionHandler)
     }
 }
