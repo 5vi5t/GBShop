@@ -15,7 +15,6 @@ class GetGood: AbstractRequestFactory {
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")
     
     // MARK: - Construction
     
@@ -31,8 +30,8 @@ class GetGood: AbstractRequestFactory {
 extension GetGood {
     struct GoodById: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .get
-        let path: String = "getGoodById.json"
+        let method: HTTPMethod = .post
+        let path: String = "getGoodById"
         let productId: Int
         var parameters: Parameters? {
             return [

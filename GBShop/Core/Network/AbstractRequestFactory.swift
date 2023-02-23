@@ -12,6 +12,7 @@ protocol AbstractRequestFactory {
     var errorParser: AbstractErrorParser { get }
     var sessionManager: Session { get }
     var queue: DispatchQueue { get }
+    var baseUrl: URL? { get }
     
     @discardableResult
     func request<T: Decodable>(
@@ -31,6 +32,12 @@ extension AbstractRequestFactory {
             .responseCodable(errorParser: errorParser,
                              queue: queue,
                              completionHandler: completionHandler)
+    }
+}
+
+extension AbstractRequestFactory {
+    var baseUrl: URL? {
+        URL(string: "https://vaporapp-production.up.railway.app/")
     }
 }
 

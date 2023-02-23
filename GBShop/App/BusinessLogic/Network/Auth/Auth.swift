@@ -15,7 +15,6 @@ class Auth: AbstractRequestFactory {
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")
     
     // MARK: - Construction
     
@@ -32,7 +31,7 @@ extension Auth: AuthRequestFactory {
     
     // MARK: - Functions
     
-    func login(username: String, password: String, completionHandler: @escaping (Alamofire.AFDataResponse<LoginResult>) -> Void) {
+    func login(username: String, password: String, completionHandler: @escaping (AFDataResponse<LoginResult>) -> Void) {
         guard let baseUrl else { return }
         let requestModel = Login(baseUrl: baseUrl, login: username, password: password)
         request(request: requestModel, completionHandler: completionHandler)
@@ -42,8 +41,8 @@ extension Auth: AuthRequestFactory {
 extension Auth {
     struct Login: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .get
-        let path: String = "login.json"
+        let method: HTTPMethod = .post
+        let path: String = "login"
         let login: String
         let password: String
         var parameters: Parameters? {

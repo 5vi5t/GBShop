@@ -39,7 +39,41 @@ final class RegTests: XCTestCase {
                          creditCard: creditCard,
                          bio: bio) { response in
             switch response.result {
-            case .success(_): break
+            case .success(let result):
+                XCTAssertEqual(1, result.result)
+                XCTAssertNotNil(result.userMessage)
+                XCTAssertNil(result.errorMessage)
+            case .failure(_):
+                XCTFail()
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testRegWithInvalidValues() {
+        let userId = 1
+        let username = "Somebody"
+        let password = "qwerty"
+        let email = "something"
+        let gender = "m"
+        let creditCard = ""
+        let bio = "This is good! I think I will switch to another language"
+        let expectation = XCTestExpectation(description: #function)
+        let reg = requestFactory.makeRegRequestFactory()
+        
+        reg.registerUser(userId: userId,
+                         username: username,
+                         password: password,
+                         email: email,
+                         gender: gender,
+                         creditCard: creditCard,
+                         bio: bio) { response in
+            switch response.result {
+            case .success(let result):
+                XCTAssertEqual(0, result.result)
+                XCTAssertNil(result.userMessage)
+                XCTAssertNotNil(result.errorMessage)
             case .failure(_):
                 XCTFail()
             }
