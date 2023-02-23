@@ -1,22 +1,22 @@
 //
-//  GetGoodsList.swift
+//  RemoveReview.swift
 //  GBShop
 //
-//  Created by Константин on 16.02.2023.
+//  Created by Константин on 23.02.2023.
 //
 
 import Foundation
 import Alamofire
 
-class GetGoodsList: AbstractRequestFactory {
+class RemoveReview: AbstractRequestFactory {
     // MARK: - Properties
-    
+
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
-    
+
     // MARK: - Construction
-    
+
     init(
         errorParser: AbstractErrorParser,
         sessionManager: Session,
@@ -28,35 +28,31 @@ class GetGoodsList: AbstractRequestFactory {
     }
 }
 
-extension GetGoodsList {
-    struct CatalogData: RequestRouter {
+extension RemoveReview {
+    struct RemoveReview: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .post
-        let path: String = "catalogData"
-        let pageNumber: Int
-        let categoryId: Int
+        let path: String = "removeReview"
+        let commentId: Int
         var parameters: Parameters? {
             return [
-                "page_number": pageNumber,
-                "id_category": categoryId
+                "id_comment": commentId
             ]
         }
     }
 }
 
-extension GetGoodsList: GetGoodsListRequestFactory {
+extension RemoveReview: RemoveReviewRequestFactory {
     // MARK: - Functions
 
-    func getCatalogData(
-        pageNumber: Int,
-        categoryId: Int,
-        completionHandler: @escaping (AFDataResponse<CatalogDataResult>) -> Void
+    func removeReview(
+        commentId: Int,
+        completionHandler: @escaping (AFDataResponse<RemoveReviewResult>) -> Void
     ) {
         guard let baseUrl else { return }
-        let requestModel = CatalogData(
+        let requestModel = RemoveReview(
             baseUrl: baseUrl,
-            pageNumber: pageNumber,
-            categoryId: categoryId)
+            commentId: commentId)
         request(request: requestModel, completionHandler: completionHandler)
     }
 }

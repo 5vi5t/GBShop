@@ -29,6 +29,12 @@ class MainViewController: UIViewController {
         getGoodsList()
         sleep(1)
         getGood()
+        sleep(1)
+        addReview()
+        sleep(1)
+        removeReview()
+        sleep(1)
+        getReviewList()
     }
     
     // MARK: - Functions
@@ -117,10 +123,52 @@ class MainViewController: UIViewController {
     
     func getGood() {
         let getGood = requestFactory.makeGetGoodRequestFactory()
-        getGood.getGood(by: 1) { response in
+        getGood.getGood(by: 123) { response in
             switch response.result {
             case .success(let good):
                 print(good)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    func addReview() {
+        let addReview = requestFactory.makeAddReviewRequestFactory()
+        addReview.addReview(
+            userId: 123,
+            text: "Текст отзыва"
+        ) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    func removeReview() {
+        let removeReview = requestFactory.makeRemoveReviewRequestFactory()
+        removeReview.removeReview(commentId: 123) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    func getReviewList() {
+        let getReviewList = requestFactory.makeGetReviewListRequestFactory()
+        getReviewList.getReviewList(
+            pageNumber: 1,
+            productId: 123
+            ) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
             case .failure(let error):
                 print(error)
             }
