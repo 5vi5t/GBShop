@@ -9,13 +9,15 @@ import XCTest
 @testable import GBShop
 
 final class GetGoodsListTests: XCTestCase {
-    
+    // swiftlint:disable:next implicitly_unwrapped_optional
     var requestFactory: RequestFactory!
 
+    // swiftlint:disable:next overridden_super_call
     override func setUpWithError() throws {
         requestFactory = RequestFactory()
     }
 
+    // swiftlint:disable:next overridden_super_call
     override func tearDownWithError() throws {
         requestFactory = nil
     }
@@ -33,7 +35,7 @@ final class GetGoodsListTests: XCTestCase {
                 XCTAssertNotNil(result.products)
                 XCTAssertNil(result.result)
                 XCTAssertNil(result.errorMessage)
-            case .failure(_):
+            case .failure:
                 XCTFail()
             }
             expectation.fulfill()
@@ -54,7 +56,7 @@ final class GetGoodsListTests: XCTestCase {
                 XCTAssertNil(result.products)
                 XCTAssertNil(result.pageNumber)
                 XCTAssertNotNil(result.errorMessage)
-            case .failure(_):
+            case .failure:
                 XCTFail()
             }
             expectation.fulfill()

@@ -1,22 +1,22 @@
 //
-//  GetGoodsList.swift
+//  AddReview.swift
 //  GBShop
 //
-//  Created by Константин on 16.02.2023.
+//  Created by Константин on 23.02.2023.
 //
 
 import Foundation
 import Alamofire
 
-class GetGoodsList: AbstractRequestFactory {
+class AddReview: AbstractRequestFactory {
     // MARK: - Properties
-    
+
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
-    
+
     // MARK: - Construction
-    
+
     init(
         errorParser: AbstractErrorParser,
         sessionManager: Session,
@@ -28,35 +28,35 @@ class GetGoodsList: AbstractRequestFactory {
     }
 }
 
-extension GetGoodsList {
-    struct CatalogData: RequestRouter {
+extension AddReview {
+    struct AddReview: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .post
-        let path: String = "catalogData"
-        let pageNumber: Int
-        let categoryId: Int
+        let path: String = "addReview"
+        let userId: Int
+        let text: String
         var parameters: Parameters? {
             return [
-                "page_number": pageNumber,
-                "id_category": categoryId
+                "id_user": userId,
+                "text": text
             ]
         }
     }
 }
 
-extension GetGoodsList: GetGoodsListRequestFactory {
+extension AddReview: AddReviewRequestFactory {
     // MARK: - Functions
 
-    func getCatalogData(
-        pageNumber: Int,
-        categoryId: Int,
-        completionHandler: @escaping (AFDataResponse<CatalogDataResult>) -> Void
+    func addReview(
+        userId: Int,
+        text: String,
+        completionHandler: @escaping (AFDataResponse<AddReviewResult>) -> Void
     ) {
         guard let baseUrl else { return }
-        let requestModel = CatalogData(
+        let requestModel = AddReview(
             baseUrl: baseUrl,
-            pageNumber: pageNumber,
-            categoryId: categoryId)
+            userId: userId,
+            text: text)
         request(request: requestModel, completionHandler: completionHandler)
     }
 }

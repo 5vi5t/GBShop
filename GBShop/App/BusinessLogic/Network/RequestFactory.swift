@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 
 class RequestFactory {
-    
     // MARK: - Properties
     
     lazy var commonSession: Session = {
@@ -55,5 +54,20 @@ class RequestFactory {
     func makeGetGoodRequestFactory() -> GetGoodRequestFactory {
         let errorParser = makeErrorParser()
         return GetGood(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+
+    func makeAddReviewRequestFactory() -> AddReviewRequestFactory {
+        let errorParser = makeErrorParser()
+        return AddReview(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+
+    func makeRemoveReviewRequestFactory() -> RemoveReviewRequestFactory {
+        let errorParser = makeErrorParser()
+        return RemoveReview(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+
+    func makeGetReviewListRequestFactory() -> GetReviewListRequestFactory {
+        let errorParser = makeErrorParser()
+        return GetReviewList(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
     }
 }

@@ -8,7 +8,6 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    
     // MARK: - Properties
     
     private let requestFactory = RequestFactory()
@@ -30,14 +29,22 @@ class MainViewController: UIViewController {
         getGoodsList()
         sleep(1)
         getGood()
+        sleep(1)
+        addReview()
+        sleep(1)
+        removeReview()
+        sleep(1)
+        getReviewList()
     }
     
     // MARK: - Functions
     
     func auth() {
         let auth = requestFactory.makeAuthRequestFactory()
-        auth.login(username: "Somebody",
-                   password: "mypassword") { response in
+        auth.login(
+            username: "Somebody",
+            password: "mypassword"
+        ) { response in
             switch response.result {
             case .success(let login):
                 print(login)
@@ -68,14 +75,15 @@ class MainViewController: UIViewController {
             email: "some@some.ru",
             gender: "m",
             creditCard: "9872389-2424-234224-234",
-            bio: "This is good! I think I will switch to another language") { response in
-                switch response.result {
-                case .success(let registerUser):
-                    print(registerUser)
-                case .failure(let error):
-                    print(error)
-                }
+            bio: "This is good! I think I will switch to another language"
+        ) { response in
+            switch response.result {
+            case .success(let registerUser):
+                print(registerUser)
+            case .failure(let error):
+                print(error)
             }
+        }
     }
     
     func editProfile() {
@@ -87,20 +95,23 @@ class MainViewController: UIViewController {
             email: "some@some.ru",
             gender: "m",
             creditCard: "9872389-2424-234224-234",
-            bio: "This is good! I think I will switch to another language") { response in
-                switch response.result {
-                case .success(let registerUser):
-                    print(registerUser)
-                case .failure(let error):
-                    print(error)
-                }
+            bio: "This is good! I think I will switch to another language"
+        ) { response in
+            switch response.result {
+            case .success(let registerUser):
+                print(registerUser)
+            case .failure(let error):
+                print(error)
             }
+        }
     }
     
     func getGoodsList() {
         let getGoodsList = requestFactory.makeGetGoodsListRequestFactory()
-        getGoodsList.getCatalogData(pageNumber: 1,
-                                    categoryId: 1) { response in
+        getGoodsList.getCatalogData(
+            pageNumber: 1,
+            categoryId: 1
+        ) { response in
             switch response.result {
             case .success(let goodsList):
                 print(goodsList)
@@ -112,10 +123,52 @@ class MainViewController: UIViewController {
     
     func getGood() {
         let getGood = requestFactory.makeGetGoodRequestFactory()
-        getGood.getGood(by: 1) { response in
+        getGood.getGood(by: 123) { response in
             switch response.result {
             case .success(let good):
                 print(good)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    func addReview() {
+        let addReview = requestFactory.makeAddReviewRequestFactory()
+        addReview.addReview(
+            userId: 123,
+            text: "Текст отзыва"
+        ) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    func removeReview() {
+        let removeReview = requestFactory.makeRemoveReviewRequestFactory()
+        removeReview.removeReview(commentId: 123) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    func getReviewList() {
+        let getReviewList = requestFactory.makeGetReviewListRequestFactory()
+        getReviewList.getReviewList(
+            pageNumber: 1,
+            productId: 123
+            ) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
             case .failure(let error):
                 print(error)
             }

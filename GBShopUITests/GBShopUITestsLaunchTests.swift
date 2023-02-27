@@ -8,11 +8,11 @@
 import XCTest
 
 final class GBShopUITestsLaunchTests: XCTestCase {
-
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }
 
+    // swiftlint:disable:next overridden_super_call
     override func setUpWithError() throws {
         continueAfterFailure = false
     }

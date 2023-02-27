@@ -1,22 +1,22 @@
 //
-//  GetGoodsList.swift
+//  GetReviewList.swift
 //  GBShop
 //
-//  Created by Константин on 16.02.2023.
+//  Created by Константин on 23.02.2023.
 //
 
 import Foundation
 import Alamofire
 
-class GetGoodsList: AbstractRequestFactory {
+class GetReviewList: AbstractRequestFactory {
     // MARK: - Properties
-    
+
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
-    
+
     // MARK: - Construction
-    
+
     init(
         errorParser: AbstractErrorParser,
         sessionManager: Session,
@@ -28,35 +28,35 @@ class GetGoodsList: AbstractRequestFactory {
     }
 }
 
-extension GetGoodsList {
-    struct CatalogData: RequestRouter {
+extension GetReviewList {
+    struct ReviewList: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .post
-        let path: String = "catalogData"
+        let path: String = "reviewList"
         let pageNumber: Int
-        let categoryId: Int
+        let productId: Int
         var parameters: Parameters? {
             return [
                 "page_number": pageNumber,
-                "id_category": categoryId
+                "id_product": productId
             ]
         }
     }
 }
 
-extension GetGoodsList: GetGoodsListRequestFactory {
+extension GetReviewList: GetReviewListRequestFactory {
     // MARK: - Functions
 
-    func getCatalogData(
+    func getReviewList(
         pageNumber: Int,
-        categoryId: Int,
-        completionHandler: @escaping (AFDataResponse<CatalogDataResult>) -> Void
+        productId: Int,
+        completionHandler: @escaping (AFDataResponse<ReviewListResult>) -> Void
     ) {
         guard let baseUrl else { return }
-        let requestModel = CatalogData(
+        let requestModel = ReviewList(
             baseUrl: baseUrl,
             pageNumber: pageNumber,
-            categoryId: categoryId)
+            productId: productId)
         request(request: requestModel, completionHandler: completionHandler)
     }
 }

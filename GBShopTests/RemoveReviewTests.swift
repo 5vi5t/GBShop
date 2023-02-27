@@ -1,33 +1,33 @@
 //
-//  DeauthTests.swift
+//  RemoveReviewTests.swift
 //  GBShopTests
 //
-//  Created by Константин on 15.02.2023.
+//  Created by Константин on 23.02.2023.
 //
 
 import XCTest
 @testable import GBShop
 
-final class DeauthTests: XCTestCase {
+final class RemoveReviewTests: XCTestCase {
     // swiftlint:disable:next implicitly_unwrapped_optional
     var requestFactory: RequestFactory!
-    
+
     // swiftlint:disable:next overridden_super_call
     override func setUpWithError() throws {
         requestFactory = RequestFactory()
     }
-    
+
     // swiftlint:disable:next overridden_super_call
     override func tearDownWithError() throws {
         requestFactory = nil
     }
-    
-    func testLogoutWithValidValues() {
-        let userId = 123
+
+    func testRemoveReviewWithValidValues() {
+        let commentId = 123
         let expectation = XCTestExpectation(description: #function)
-        let deauth = requestFactory.makeDeauthRequestFactory()
-        
-        deauth.logout(userId: userId) { response in
+        let removeReview = requestFactory.makeRemoveReviewRequestFactory()
+
+        removeReview.removeReview(commentId: commentId) { response in
             switch response.result {
             case .success(let result):
                 XCTAssertEqual(1, result.result)
@@ -39,13 +39,13 @@ final class DeauthTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 10.0)
     }
-    
-    func testLogoutWithInvalidValues() {
-        let userId = 0
+
+    func testRemoveReviewWithInvalidValues() {
+        let commentId = 1
         let expectation = XCTestExpectation(description: #function)
-        let deauth = requestFactory.makeDeauthRequestFactory()
-        
-        deauth.logout(userId: userId) { response in
+        let removeReview = requestFactory.makeRemoveReviewRequestFactory()
+
+        removeReview.removeReview(commentId: commentId) { response in
             switch response.result {
             case .success(let result):
                 XCTAssertEqual(0, result.result)

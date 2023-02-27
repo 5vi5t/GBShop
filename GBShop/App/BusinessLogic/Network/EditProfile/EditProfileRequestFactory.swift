@@ -10,12 +10,7 @@ import Alamofire
 
 protocol EditProfileRequestFactory {
     func changeUserData(
-        userId: Int,
-        username: String,
-        password: String,
-        email: String,
-        gender: String,
-        creditCard: String,
-        bio: String,
-        completionHandler: @escaping (AFDataResponse<ChangeUserDataResult>) -> Void)
+        model: ChangeUserDataModel,
+        completionHandler: @escaping (AFDataResponse<ChangeUserDataResult>) -> Void
+    )
 }

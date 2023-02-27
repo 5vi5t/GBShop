@@ -31,14 +31,16 @@ struct ErrorParserStub: AbstractErrorParser {
 }
 
 final class ResponseCodableTests: XCTestCase {
-    
     let expectation = XCTestExpectation(description: #function)
+    // swiftlint:disable:next implicitly_unwrapped_optional
     var errorParser: ErrorParserStub!
-    
+
+    // swiftlint:disable:next overridden_super_call
     override func setUpWithError() throws {
         errorParser = ErrorParserStub()
     }
-    
+
+    // swiftlint:disable:next overridden_super_call
     override func tearDownWithError() throws {
         errorParser = nil
     }
@@ -47,14 +49,13 @@ final class ResponseCodableTests: XCTestCase {
         AF.request("https://jsonplaceholder.typicode.com/posts/1")
             .responseCodable(errorParser: errorParser) { [weak self] (response: DataResponse<PostStub, AFError>) in
                 switch response.result {
-                case .success(_):
+                case .success:
                     break
-                case .failure(_):
+                case .failure:
                     XCTFail()
                 }
                 self?.expectation.fulfill()
             }
         wait(for: [expectation], timeout: 10.0)
     }
-    
 }

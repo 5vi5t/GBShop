@@ -9,8 +9,7 @@ import Foundation
 import Alamofire
 
 class CustomDecodableSerializer<T: Decodable>: DataResponseSerializerProtocol {
-    
-    //MARK: - Properties
+    // MARK: - Properties
     
     private let errorParser: AbstractErrorParser
     
@@ -22,16 +21,23 @@ class CustomDecodableSerializer<T: Decodable>: DataResponseSerializerProtocol {
     
     // MARK: - Functions
     
-    func serialize(request: URLRequest?,
-                   response: HTTPURLResponse?,
-                   data: Data?,
-                   error: Error?) throws -> T {
+    func serialize(
+        request: URLRequest?,
+        response: HTTPURLResponse?,
+        data: Data?,
+        error: Error?
+    ) throws -> T {
         if let error = errorParser.parse(response: response, data: data, error: error) {
             throw error
         }
         
         do {
-            let data = try DataResponseSerializer().serialize(request: request, response: response, data: data, error: error)
+            let data = try DataResponseSerializer().serialize(
+                request: request,
+                response: response,
+                data: data,
+                error: error
+            )
             let value = try JSONDecoder().decode(T.self, from: data)
             return value
         } catch {
@@ -44,10 +50,11 @@ class CustomDecodableSerializer<T: Decodable>: DataResponseSerializerProtocol {
 
 extension DataRequest {
     @discardableResult
-    func responseCodable<T: Decodable>(errorParser: AbstractErrorParser,
-                                       queue: DispatchQueue = .main,
-                                       completionHandler: @escaping (AFDataResponse<T>) -> Void)
-    -> Self {
+    func responseCodable<T: Decodable>(
+        errorParser: AbstractErrorParser,
+        queue: DispatchQueue = .main,
+        completionHandler: @escaping (AFDataResponse<T>) -> Void
+    ) -> Self {
         let responseSerializer = CustomDecodableSerializer<T>(errorParser: errorParser)
         return response(queue: queue, responseSerializer: responseSerializer, completionHandler: completionHandler)
     }
