@@ -57,27 +57,20 @@ extension EditProfile {
 extension EditProfile: EditProfileRequestFactory {
     // MARK: - Functions
 
-    // swiftlint:disable:next function_parameter_count
     func changeUserData(
-        userId: Int,
-        username: String,
-        password: String,
-        email: String,
-        gender: String,
-        creditCard: String,
-        bio: String,
+        model: ChangeUserDataModel,
         completionHandler: @escaping (AFDataResponse<ChangeUserDataResult>) -> Void
     ) {
         guard let baseUrl else { return }
         let requestModel = ChangeUserData(
             baseUrl: baseUrl,
-            userId: userId,
-            login: username,
-            password: password,
-            email: email,
-            gender: gender,
-            creditCard: creditCard,
-            bio: bio)
+            userId: model.userId,
+            login: model.username,
+            password: model.password,
+            email: model.email,
+            gender: model.gender,
+            creditCard: model.creditCard,
+            bio: model.bio)
         request(request: requestModel, completionHandler: completionHandler)
     }
 }

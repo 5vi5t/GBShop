@@ -9,15 +9,8 @@ import Foundation
 import Alamofire
 
 protocol RegRequestFactory {
-    // swiftlint:disable:next function_parameter_count
     func registerUser(
-        userId: Int,
-        username: String,
-        password: String,
-        email: String,
-        gender: String,
-        creditCard: String,
-        bio: String,
+        model: RegisterUserModel,
         completionHandler: @escaping (AFDataResponse<RegisterUserResult>) -> Void
     )
 }
