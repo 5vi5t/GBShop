@@ -23,25 +23,18 @@ final class EditProfileTests: XCTestCase {
     }
     
     func testEditProfileWithValidValues() {
-        let userId = 123
-        let username = "Somebody"
-        let password = "mypassword"
-        let email = "some@some.ru"
-        let gender = "m"
-        let creditCard = "9872389-2424-234224-234"
-        let bio = "This is good! I think I will switch to another language"
+        let model = ChangeUserDataModel(
+            userId: 123,
+            username: "Somebody",
+            password: "mypassword",
+            email: "some@some.ru",
+            gender: "m",
+            creditCard: "9872389-2424-234224-234",
+            bio: "This is good! I think I will switch to another language")
         let expectation = XCTestExpectation(description: #function)
         let editProfile = requestFactory.makeEditProfileRequestFactory()
         
-        editProfile.changeUserData(
-            userId: userId,
-            username: username,
-            password: password,
-            email: email,
-            gender: gender,
-            creditCard: creditCard,
-            bio: bio
-        ) { response in
+        editProfile.changeUserData(model: model) { response in
             switch response.result {
             case .success(let result):
                 XCTAssertEqual(1, result.result)
@@ -55,25 +48,18 @@ final class EditProfileTests: XCTestCase {
     }
     
     func testEditProfileWithInvalidValues() {
-        let userId = 1
-        let username = "Somebody"
-        let password = "qwerty"
-        let email = "some"
-        let gender = "m"
-        let creditCard = ""
-        let bio = "This is good! I think I will switch to another language"
+        let model = ChangeUserDataModel(
+            userId: 1,
+            username: "Somebody",
+            password: "qwerty",
+            email: "some",
+            gender: "m",
+            creditCard: "",
+            bio: "This is good! I think I will switch to another language")
         let expectation = XCTestExpectation(description: #function)
         let editProfile = requestFactory.makeEditProfileRequestFactory()
         
-        editProfile.changeUserData(
-            userId: userId,
-            username: username,
-            password: password,
-            email: email,
-            gender: gender,
-            creditCard: creditCard,
-            bio: bio
-        ) { response in
+        editProfile.changeUserData(model: model) { response in
             switch response.result {
             case .success(let result):
                 XCTAssertEqual(0, result.result)
