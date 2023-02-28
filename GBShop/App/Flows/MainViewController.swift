@@ -68,15 +68,15 @@ class MainViewController: UIViewController {
     
     func reg() {
         let reg = requestFactory.makeRegRequestFactory()
-        reg.registerUser(
+        let model = RegisterUserModel(
             userId: 123,
             username: "Somebody",
             password: "mypassword",
             email: "some@some.ru",
             gender: "m",
             creditCard: "9872389-2424-234224-234",
-            bio: "This is good! I think I will switch to another language"
-        ) { response in
+            bio: "This is good! I think I will switch to another language")
+        reg.registerUser(model: model) { response in
             switch response.result {
             case .success(let registerUser):
                 print(registerUser)
@@ -88,15 +88,15 @@ class MainViewController: UIViewController {
     
     func editProfile() {
         let editProfile = requestFactory.makeEditProfileRequestFactory()
-        editProfile.changeUserData(
+        let model = ChangeUserDataModel(
             userId: 123,
             username: "Somebody",
             password: "mypassword",
             email: "some@some.ru",
             gender: "m",
             creditCard: "9872389-2424-234224-234",
-            bio: "This is good! I think I will switch to another language"
-        ) { response in
+            bio: "This is good! I think I will switch to another language")
+        editProfile.changeUserData(model: model) { response in
             switch response.result {
             case .success(let registerUser):
                 print(registerUser)
@@ -132,7 +132,7 @@ class MainViewController: UIViewController {
             }
         }
     }
-
+    
     func addReview() {
         let addReview = requestFactory.makeAddReviewRequestFactory()
         addReview.addReview(
@@ -147,7 +147,7 @@ class MainViewController: UIViewController {
             }
         }
     }
-
+    
     func removeReview() {
         let removeReview = requestFactory.makeRemoveReviewRequestFactory()
         removeReview.removeReview(commentId: 123) { response in
@@ -159,13 +159,13 @@ class MainViewController: UIViewController {
             }
         }
     }
-
+    
     func getReviewList() {
         let getReviewList = requestFactory.makeGetReviewListRequestFactory()
         getReviewList.getReviewList(
             pageNumber: 1,
             productId: 123
-            ) { response in
+        ) { response in
             switch response.result {
             case .success(let result):
                 print(result)
