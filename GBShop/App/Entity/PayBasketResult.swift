@@ -1,20 +1,21 @@
 //
-//  CatalogDataResult.swift
+//  PayBasketResult.swift
 //  GBShop
 //
-//  Created by Константин on 16.02.2023.
+//  Created by Константин on 28.02.2023.
 //
 
 import Foundation
 
-struct CatalogDataResult: Codable {
-    let pageNumber: Int?
+struct PayBasketResult: Codable {
+    let amount: Int?
+    let balance: Int?
     let products: [Product]?
-    let result: Int?
+    let result: Int
     let errorMessage: String?
-    
+
     enum CodingKeys: String, CodingKey {
-        case pageNumber = "page_number"
+        case amount, balance
         case products, result
         case errorMessage = "error_message"
     }

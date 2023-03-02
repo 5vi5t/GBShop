@@ -19,22 +19,17 @@ class MainViewController: UIViewController {
         
         view.backgroundColor = .red
         auth()
-        sleep(1)
         deauth()
-        sleep(1)
         reg()
-        sleep(1)
         editProfile()
-        sleep(1)
         getGoodsList()
-        sleep(1)
         getGood()
-        sleep(1)
         addReview()
-        sleep(1)
         removeReview()
-        sleep(1)
         getReviewList()
+        addToBasket()
+        deleteFromBasket()
+        payBasket()
     }
     
     // MARK: - Functions
@@ -165,6 +160,50 @@ class MainViewController: UIViewController {
         getReviewList.getReviewList(
             pageNumber: 1,
             productId: 123
+        ) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    func addToBasket() {
+        let addToBasket = requestFactory.makeAddToBasketRequestFactory()
+        addToBasket.addToBasket(
+            productId: 123,
+            quantity: 1
+        ) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    func deleteFromBasket() {
+        let deleteFromBasket = requestFactory.makeDeleteFromBasketRequestFactory()
+        deleteFromBasket.deleteFromBasket(
+            productId: 123
+        ) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    func payBasket() {
+        let payBasket = requestFactory.makePayBasketRequestFactory()
+        payBasket.payBasket(
+            amount: 46600,
+            amountMethod: "Visa"
         ) { response in
             switch response.result {
             case .success(let result):
