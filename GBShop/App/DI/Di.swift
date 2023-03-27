@@ -39,6 +39,7 @@ extension Di: AppFactory {
 
 protocol ScreenFactory {
     func makeAuthScreen() -> AuthController<AuthViewImpl>
+    func makeRegScreen() -> RegController<RegViewImpl>
 }
 
 final class ScreenFactoryImpl: ScreenFactory {
@@ -52,6 +53,10 @@ final class ScreenFactoryImpl: ScreenFactory {
     // MARK: - Functions
     func makeAuthScreen() -> AuthController<AuthViewImpl> {
         AuthController<AuthViewImpl>(requestFactory: di.requestFactory)
+    }
+
+    func makeRegScreen() -> RegController<RegViewImpl> {
+        RegController<RegViewImpl>(requestFactory: di.requestFactory)
     }
 }
 

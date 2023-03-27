@@ -16,7 +16,7 @@ final class ApplicationCoordinator: BaseCoordinator {
     // MARK: - Function
     override func start() {
         if isLogin {
-            //            runMovieFlow()
+            //
         } else {
             runAuthFlow()
         }

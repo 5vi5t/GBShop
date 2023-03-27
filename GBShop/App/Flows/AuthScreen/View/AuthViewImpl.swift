@@ -7,18 +7,16 @@
 
 import UIKit
 
-// MARK: - Types
-typealias PressedReturn = (UITextField) -> Void
-typealias EnteredText = (AuthViewOutputData?) -> Void
-
 // MARK: - AuthView
 protocol AuthView: UIView {
     var pressedSignInButton: VoidClosure? { get set }
     var pressedSignUpButton: VoidClosure? { get set }
     var pressedReturn: PressedReturn? { get set }
-    var enteredText: EnteredText? { get set }
+    var enteredText: AuthEnteredText? { get set }
     var loginTextField: UITextField { get }
     var passwordTextField: UITextField { get }
+
+    func update(with inputData: AuthViewInputData)
 }
 
 // MARK: - AuthViewImpl
@@ -27,7 +25,7 @@ final class AuthViewImpl: UIView, AuthView {
     var pressedSignInButton: VoidClosure?
     var pressedSignUpButton: VoidClosure?
     var pressedReturn: PressedReturn?
-    var enteredText: EnteredText?
+    var enteredText: AuthEnteredText?
 
     private var outputData: AuthViewOutputData? {
         guard
@@ -127,6 +125,14 @@ final class AuthViewImpl: UIView, AuthView {
         stackView.axis = .vertical
         return stackView
     }()
+    private lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .red
+        label.textAlignment = .center
+        label.numberOfLines = .zero
+        return label
+    }()
 
     // MARK: - Construction
     override init(frame: CGRect) {
@@ -139,17 +145,28 @@ final class AuthViewImpl: UIView, AuthView {
     }
 
     // MARK: - Functions
+    func update(with inputData: AuthViewInputData) {
+        errorLabel.isHidden = inputData.errorMessage == nil
+        errorLabel.text = inputData.errorMessage ?? ""
+    }
+
+    // MARK: - Private functions
     private func configureUI() {
         backgroundColor = .white
         setupConstraints()
     }
     private func setupConstraints() {
         addSubview(externalStackView)
+        addSubview(errorLabel)
 
         NSLayoutConstraint.activate([
             externalStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             externalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            externalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30)
+            externalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+
+            errorLabel.topAnchor.constraint(equalTo: externalStackView.bottomAnchor, constant: 20),
+            errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
+            errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30)
         ])
     }
 }

@@ -20,9 +20,16 @@ final class AuthCoordinator: BaseCoordinator {
 
     private func showAuth() {
         let authScreen = screenFactory.makeAuthScreen()
-        authScreen.onLogin = { [weak self] in
+        authScreen.onLogin = { [weak self] in self?.finishFlow?() }
+        authScreen.pressedSignUpButton = { [weak self] in self?.showReg() }
+        router.setRootModule(authScreen, hideBar: true)
+    }
+
+    private func showReg() {
+        let regScreen = screenFactory.makeRegScreen()
+        regScreen.onReg = { [weak self] in
             self?.finishFlow?()
         }
-        router.setRootModule(authScreen, hideBar: true)
+        router.push(regScreen)
     }
 }

@@ -10,10 +10,10 @@ import UIKit
 final class AuthController<View: AuthView>: BaseViewController<View> {
     // MARK: - Properties
     private let auth: AuthRequestFactory
+    private var loginCredentials: LoginCredentials?
 
     var onLogin: VoidClosure?
-
-    private var loginCredentials: LoginCredentials?
+    var pressedSignUpButton: VoidClosure?
 
     // MARK: - Construction
     init(requestFactory: RequestFactory) {
@@ -28,6 +28,7 @@ final class AuthController<View: AuthView>: BaseViewController<View> {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        signUp()
         addTap()
         nextTextField()
         addLoginData()
@@ -35,6 +36,11 @@ final class AuthController<View: AuthView>: BaseViewController<View> {
     }
 
     // MARK: - Functions
+    private func signUp() {
+        rootView.pressedSignUpButton = { [weak self] in
+            self?.pressedSignUpButton?()
+        }
+    }
 
     private func nextTextField() {
         rootView.pressedReturn = { [weak self] textField in
@@ -66,13 +72,22 @@ final class AuthController<View: AuthView>: BaseViewController<View> {
             ) { response in
                 switch response.result {
                 case .success(let result):
-                    print(result)
-                    //TODO: надо распарсить резалт и либо ошибка либо го ту некст экран
-                    //надо бы в сервисе это делать но мы сделаем это здесь
-                    //надо лейбл на вью добавить с ошибкой
+                    guard
+                        let viewInputData = self?.makeAuthViewInputData(with: result.errorMessage)
+                    else { return }
+                    DispatchQueue.main.async {
+                        self?.rootView.update(with: viewInputData)
+                    }
+                    if result.result == 1 {
+                        self?.onLogin?()
+                    }
                 case .failure(let error):
-                    print(error)
-                    //TODO: тоже можно ошибка показать
+                    guard
+                        let viewInputData = self?.makeAuthViewInputData(with: error.errorDescription)
+                    else { return }
+                    DispatchQueue.main.async {
+                        self?.rootView.update(with: viewInputData)
+                    }
                 }
             }
         }
@@ -85,6 +100,10 @@ final class AuthController<View: AuthView>: BaseViewController<View> {
 
     @objc private func hideKeyboard() {
         view.endEditing(true)
+    }
+
+    private func makeAuthViewInputData(with error: String?) -> AuthViewInputData {
+        return AuthViewInputData(errorMessage: error)
     }
 }
 

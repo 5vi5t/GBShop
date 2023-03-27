@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A40603D329D1EAB400C5EA67 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40603D229D1EAB400C5EA67 /* UserView.swift */; };
 		A411423A29A7D84F00CB710F /* AddReviewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A411423929A7D84F00CB710F /* AddReviewTests.swift */; };
 		A411423C29A7D9F500CB710F /* RemoveReviewRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A411423B29A7D9F500CB710F /* RemoveReviewRequestFactory.swift */; };
 		A411423E29A7DA0200CB710F /* RemoveReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A411423D29A7DA0200CB710F /* RemoveReview.swift */; };
@@ -33,8 +34,7 @@
 		A46DA2F429B4FAB100FBEBF5 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46DA2F329B4FAB100FBEBF5 /* AuthController.swift */; };
 		A47AA32929C5D2C6000D7E41 /* AuthViewImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AA32829C5D2C6000D7E41 /* AuthViewImpl.swift */; };
 		A47AA32C29C6425C000D7E41 /* RegController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AA32B29C6425C000D7E41 /* RegController.swift */; };
-		A47AA32F29C64288000D7E41 /* RegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AA32E29C64288000D7E41 /* RegView.swift */; };
-		A47AA33129C64DCA000D7E41 /* RegController+TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AA33029C64DCA000D7E41 /* RegController+TextFieldDelegate.swift */; };
+		A47AA32F29C64288000D7E41 /* RegViewImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AA32E29C64288000D7E41 /* RegViewImpl.swift */; };
 		A47AA33729C75DEF000D7E41 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AA33629C75DEF000D7E41 /* Coordinator.swift */; };
 		A47AA33929C75F60000D7E41 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AA33829C75F60000D7E41 /* Router.swift */; };
 		A47AA33C29C76224000D7E41 /* Di.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47AA33B29C76224000D7E41 /* Di.swift */; };
@@ -109,6 +109,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A40603D229D1EAB400C5EA67 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		A411423929A7D84F00CB710F /* AddReviewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewTests.swift; sourceTree = "<group>"; };
 		A411423B29A7D9F500CB710F /* RemoveReviewRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveReviewRequestFactory.swift; sourceTree = "<group>"; };
 		A411423D29A7DA0200CB710F /* RemoveReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveReview.swift; sourceTree = "<group>"; };
@@ -135,8 +136,7 @@
 		A46DA2F329B4FAB100FBEBF5 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		A47AA32829C5D2C6000D7E41 /* AuthViewImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewImpl.swift; sourceTree = "<group>"; };
 		A47AA32B29C6425C000D7E41 /* RegController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegController.swift; sourceTree = "<group>"; };
-		A47AA32E29C64288000D7E41 /* RegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegView.swift; sourceTree = "<group>"; };
-		A47AA33029C64DCA000D7E41 /* RegController+TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegController+TextFieldDelegate.swift"; sourceTree = "<group>"; };
+		A47AA32E29C64288000D7E41 /* RegViewImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewImpl.swift; sourceTree = "<group>"; };
 		A47AA33629C75DEF000D7E41 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		A47AA33829C75F60000D7E41 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		A47AA33B29C76224000D7E41 /* Di.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Di.swift; sourceTree = "<group>"; };
@@ -222,6 +222,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A40603D029D1EA9300C5EA67 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				A40603D129D1EAA000C5EA67 /* UserView */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		A40603D129D1EAA000C5EA67 /* UserView */ = {
+			isa = PBXGroup;
+			children = (
+				A40603D229D1EAB400C5EA67 /* UserView.swift */,
+			);
+			path = UserView;
+			sourceTree = "<group>";
+		};
+		A40603D429D1FDCE00C5EA67 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				A4F675342996703800B0F5B7 /* LoginResult.swift */,
+				A4F675432996B87E00B0F5B7 /* LogoutResult.swift */,
+				A4E9E64129979750007F9DFE /* RegisterUserResult.swift */,
+				A4E9E6482997A07C007F9DFE /* ChangeUserDataResult.swift */,
+				A497C81F299D663D003FD0F6 /* CatalogDataResult.swift */,
+				A497C827299D6A14003FD0F6 /* GetGoodByIdResult.swift */,
+				A4A95D5D29A7A5BD009DC736 /* AddReviewResult.swift */,
+				A4A95D5F29A7AF16009DC736 /* RemoveReviewResult.swift */,
+				A4A95D6129A7AF45009DC736 /* ReviewListResult.swift */,
+				A42B701329ADFE2D00DB9AB6 /* Product.swift */,
+				A42B701529ADFE5300DB9AB6 /* PayBasketResult.swift */,
+				A42B701729ADFED900DB9AB6 /* AddToBasketResult.swift */,
+				A42B701929ADFF1000DB9AB6 /* DeleteFromBasketResult.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
 		A42B700E29AD113C00DB9AB6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,7 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				A47AA32729C5D1E1000D7E41 /* View */,
-				A46DA2F329B4FAB100FBEBF5 /* AuthController.swift */,
+				A47AA35629CBB433000D7E41 /* Controller */,
 			);
 			path = AuthScreen;
 			sourceTree = "<group>";
@@ -279,8 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				A47AA32D29C64276000D7E41 /* View */,
-				A47AA32B29C6425C000D7E41 /* RegController.swift */,
-				A47AA33029C64DCA000D7E41 /* RegController+TextFieldDelegate.swift */,
+				A47AA35529CBB422000D7E41 /* Controller */,
 			);
 			path = RegScreen;
 			sourceTree = "<group>";
@@ -288,7 +323,7 @@
 		A47AA32D29C64276000D7E41 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A47AA32E29C64288000D7E41 /* RegView.swift */,
+				A47AA32E29C64288000D7E41 /* RegViewImpl.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -297,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				A47AA34529C77A2E000D7E41 /* UIKit */,
-				A47AA34229C76B6C000D7E41 /* Foundation */,
 				A47AA33529C75DB7000D7E41 /* Coordinator */,
 			);
 			path = Library;
@@ -329,17 +363,10 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
-		A47AA34229C76B6C000D7E41 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				A47AA34329C76B86000D7E41 /* Types.swift */,
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
 		A47AA34529C77A2E000D7E41 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				A47AA34329C76B86000D7E41 /* Types.swift */,
 				A47AA34B29C77B0A000D7E41 /* UIVIew */,
 				A47AA34629C77A3A000D7E41 /* UIViewController */,
 			);
@@ -363,6 +390,22 @@
 				A47AA34E29C77B0A000D7E41 /* loadFromNib.swift */,
 			);
 			path = UIVIew;
+			sourceTree = "<group>";
+		};
+		A47AA35529CBB422000D7E41 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A47AA32B29C6425C000D7E41 /* RegController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A47AA35629CBB433000D7E41 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A46DA2F329B4FAB100FBEBF5 /* AuthController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A497C81B299D601F003FD0F6 /* GetGoodsList */ = {
@@ -497,19 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				A42B700E29AD113C00DB9AB6 /* Model */,
-				A4F675342996703800B0F5B7 /* LoginResult.swift */,
-				A4F675432996B87E00B0F5B7 /* LogoutResult.swift */,
-				A4E9E64129979750007F9DFE /* RegisterUserResult.swift */,
-				A4E9E6482997A07C007F9DFE /* ChangeUserDataResult.swift */,
-				A497C81F299D663D003FD0F6 /* CatalogDataResult.swift */,
-				A497C827299D6A14003FD0F6 /* GetGoodByIdResult.swift */,
-				A4A95D5D29A7A5BD009DC736 /* AddReviewResult.swift */,
-				A4A95D5F29A7AF16009DC736 /* RemoveReviewResult.swift */,
-				A4A95D6129A7AF45009DC736 /* ReviewListResult.swift */,
-				A42B701329ADFE2D00DB9AB6 /* Product.swift */,
-				A42B701529ADFE5300DB9AB6 /* PayBasketResult.swift */,
-				A42B701729ADFED900DB9AB6 /* AddToBasketResult.swift */,
-				A42B701929ADFF1000DB9AB6 /* DeleteFromBasketResult.swift */,
+				A40603D429D1FDCE00C5EA67 /* Result */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -524,6 +555,7 @@
 		A4C0FCB32992DAA5006F02DF /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				A40603D029D1EA9300C5EA67 /* Elements */,
 				A47AA32A29C6423F000D7E41 /* RegScreen */,
 				A4C0FCB82992E380006F02DF /* MainViewController.swift */,
 				A46DA2F529B4FAB900FBEBF5 /* AuthScreen */,
@@ -806,7 +838,6 @@
 				A497C820299D663E003FD0F6 /* CatalogDataResult.swift in Sources */,
 				A4F67531299651BC00B0F5B7 /* AbstractRequestFactory.swift in Sources */,
 				A42B701029AD115700DB9AB6 /* ChangeUserDataModel.swift in Sources */,
-				A47AA33129C64DCA000D7E41 /* RegController+TextFieldDelegate.swift in Sources */,
 				A4F6753E2996A84A00B0F5B7 /* RequestFactory.swift in Sources */,
 				A4F6752A2996451700B0F5B7 /* ErrorParser.swift in Sources */,
 				A4C0FCB92992E380006F02DF /* MainViewController.swift in Sources */,
@@ -820,6 +851,7 @@
 				A411424229A7DC5A00CB710F /* GetReviewList.swift in Sources */,
 				A4F6752C2996469D00B0F5B7 /* DataRequest.swift in Sources */,
 				A4F675352996703800B0F5B7 /* LoginResult.swift in Sources */,
+				A40603D329D1EAB400C5EA67 /* UserView.swift in Sources */,
 				A47AA33F29C76990000D7E41 /* ApplicationCoordinator.swift in Sources */,
 				A4A95D6229A7AF45009DC736 /* ReviewListResult.swift in Sources */,
 				A497C81E299D6576003FD0F6 /* GetGoodsListRequestFactory.swift in Sources */,
@@ -847,7 +879,7 @@
 				A4E9E64B2997A0CC007F9DFE /* EditProfile.swift in Sources */,
 				A4A95D6029A7AF16009DC736 /* RemoveReviewResult.swift in Sources */,
 				A42B701429ADFE2D00DB9AB6 /* Product.swift in Sources */,
-				A47AA32F29C64288000D7E41 /* RegView.swift in Sources */,
+				A47AA32F29C64288000D7E41 /* RegViewImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
