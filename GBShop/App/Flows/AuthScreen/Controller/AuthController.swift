@@ -72,14 +72,14 @@ final class AuthController<View: AuthView>: BaseViewController<View> {
             ) { response in
                 switch response.result {
                 case .success(let result):
+                    if result.result == 1 {
+                        self?.onLogin?()
+                    }
                     guard
                         let viewInputData = self?.makeAuthViewInputData(with: result.errorMessage)
                     else { return }
                     DispatchQueue.main.async {
                         self?.rootView.update(with: viewInputData)
-                    }
-                    if result.result == 1 {
-                        self?.onLogin?()
                     }
                 case .failure(let error):
                     guard

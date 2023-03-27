@@ -27,9 +27,7 @@ final class AuthCoordinator: BaseCoordinator {
 
     private func showReg() {
         let regScreen = screenFactory.makeRegScreen()
-        regScreen.onReg = { [weak self] in
-            self?.finishFlow?()
-        }
+        regScreen.onReg = { [weak self] in self?.finishFlow?() }
         router.push(regScreen)
     }
 }

@@ -36,10 +36,37 @@ class RegController<View: RegView>: BaseViewController<View> {
 
     // MARK: - Functions
     private func signUp() {
-        guard let creds = regCredentials else { return }
-        reg.registerUser(model: makeRegisterUserModel(creds)) { result in
-
+        rootView.pressedSignUpButton = { [weak self] in
+            guard
+                let creds = self?.regCredentials,
+                let model = self?.makeRegisterUserModel(creds)
+            else { return }
+            self?.reg.registerUser(model: model) { response in
+                switch response.result {
+                case .success(let result):
+                    if result.result == 1 {
+                        self?.onReg?()
+                    }
+                    guard
+                        let viewInputData = self?.makeRegViewInputData(with: result.errorMessage)
+                    else { return }
+                    DispatchQueue.main.async {
+                        self?.rootView.update(with: viewInputData)
+                    }
+                case .failure(let error):
+                    guard
+                        let viewInputData = self?.makeRegViewInputData(with: error.errorDescription)
+                    else { return }
+                    DispatchQueue.main.async {
+                        self?.rootView.update(with: viewInputData)
+                    }
+                }
+            }
         }
+    }
+
+    private func makeRegViewInputData(with error: String?) -> RegViewInputData {
+        return RegViewInputData(errorMessage: error)
     }
 
     private func makeRegisterUserModel(_ creds: RegCredentials) -> RegisterUserModel {

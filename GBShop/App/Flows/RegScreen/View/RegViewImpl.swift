@@ -12,7 +12,10 @@ import UIKit
 protocol RegView: UIView {
     var pressedReturn: PressedReturn? { get set }
     var enteredText: UserEnteredText? { get set }
+    var pressedSignUpButton: VoidClosure? { get set }
     var userView: UserView { get }
+
+    func update(with inputData: RegViewInputData)
 }
 
 // MARK: - RegViewImpl
@@ -20,6 +23,7 @@ class RegViewImpl: UIView, RegView {
     // MARK: - Properties
     var pressedReturn: PressedReturn?
     var enteredText: UserEnteredText?
+    var pressedSignUpButton: VoidClosure?
 
     // MARK: - UI Properties
     private(set) lazy var userView: UserView = {
@@ -31,6 +35,10 @@ class RegViewImpl: UIView, RegView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Sign Up", for: .normal)
+        let action = UIAction { [weak self] _ in
+            self?.pressedSignUpButton?()
+        }
+        button.addAction(action, for: .touchUpInside)
         return button
     }()
     private lazy var stackView: UIStackView = {
@@ -45,6 +53,14 @@ class RegViewImpl: UIView, RegView {
         stackView.axis = .vertical
         return stackView
     }()
+    private lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .red
+        label.textAlignment = .center
+        label.numberOfLines = .zero
+        return label
+    }()
 
     // MARK: - Construction
     override init(frame: CGRect) {
@@ -57,6 +73,12 @@ class RegViewImpl: UIView, RegView {
     }
 
     // MARK: - Functions
+    func update(with inputData: RegViewInputData) {
+        errorLabel.isHidden = inputData.errorMessage == nil
+        errorLabel.text = inputData.errorMessage ?? ""
+    }
+
+    // MARK: - Private functions
     private func setup() {
         userView.pressedReturn = { [weak self] textField in
             self?.pressedReturn?(textField)
@@ -72,11 +94,21 @@ class RegViewImpl: UIView, RegView {
     }
     private func setupConstraints() {
         addSubview(stackView)
+        addSubview(errorLabel)
 
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30)
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+
+            errorLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
+            errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
+            errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30)
         ])
     }
+}
+
+// MARK: - RegViewInputData
+struct RegViewInputData {
+    let errorMessage: String?
 }
