@@ -74,6 +74,7 @@ final class AuthController<View: AuthView>: BaseViewController<View> {
                 case .success(let result):
                     if result.result == 1 {
                         self?.onLogin?()
+                        return
                     }
                     guard
                         let viewInputData = self?.makeAuthViewInputData(with: result.errorMessage)

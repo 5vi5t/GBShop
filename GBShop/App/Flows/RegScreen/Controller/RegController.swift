@@ -46,6 +46,7 @@ class RegController<View: RegView>: BaseViewController<View> {
                 case .success(let result):
                     if result.result == 1 {
                         self?.onReg?()
+                        return
                     }
                     guard
                         let viewInputData = self?.makeRegViewInputData(with: result.errorMessage)

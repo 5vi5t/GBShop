@@ -40,6 +40,7 @@ extension Di: AppFactory {
 protocol ScreenFactory {
     func makeAuthScreen() -> AuthController<AuthViewImpl>
     func makeRegScreen() -> RegController<RegViewImpl>
+    func makeProfileScreen() -> ProfileController<ProfileViewImpl>
 }
 
 final class ScreenFactoryImpl: ScreenFactory {
@@ -58,11 +59,16 @@ final class ScreenFactoryImpl: ScreenFactory {
     func makeRegScreen() -> RegController<RegViewImpl> {
         RegController<RegViewImpl>(requestFactory: di.requestFactory)
     }
+
+    func makeProfileScreen() -> ProfileController<ProfileViewImpl> {
+        ProfileController(requestFactory: di.requestFactory)
+    }
 }
 
 protocol CoordinatorFactory {
     func makeApplicationCoordinator(router: Router) -> ApplicationCoordinator
     func makeAuthCoordinator(router: Router) -> AuthCoordinator
+    func makeProfileCoordinator(router: Router) -> ProfileCoordinator
 }
 
 final class CoordinatorFactoryImpl: CoordinatorFactory {
@@ -81,5 +87,9 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
 
     func makeAuthCoordinator(router: Router) -> AuthCoordinator {
         return AuthCoordinator(router: router, screenFactory: screenFactory)
+    }
+
+    func makeProfileCoordinator(router: Router) -> ProfileCoordinator {
+        return ProfileCoordinator(router: router, screenFactory: screenFactory)
     }
 }

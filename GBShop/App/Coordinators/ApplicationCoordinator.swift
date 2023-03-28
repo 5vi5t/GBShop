@@ -5,7 +5,7 @@ final class ApplicationCoordinator: BaseCoordinator {
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
 
-    private var isLogin = false
+    private var isLogin = true
 
     // MARK: - Construction
     init(router: Router, coordinatorFactory: CoordinatorFactory) {
@@ -16,7 +16,7 @@ final class ApplicationCoordinator: BaseCoordinator {
     // MARK: - Function
     override func start() {
         if isLogin {
-            //
+            runProfileFlow()
         } else {
             runAuthFlow()
         }
@@ -26,6 +26,16 @@ final class ApplicationCoordinator: BaseCoordinator {
         let coordinator = coordinatorFactory.makeAuthCoordinator(router: router)
         coordinator.finishFlow = { [weak self, weak coordinator] in
             self?.isLogin = true
+            self?.start()
+            self?.removeDependency(coordinator)
+        }
+        self.addDependency(coordinator)
+        coordinator.start()
+    }
+
+    private func runProfileFlow() {
+        let coordinator = coordinatorFactory.makeProfileCoordinator(router: router)
+        coordinator.finishFlow = { [weak self, weak coordinator] in
             self?.start()
             self?.removeDependency(coordinator)
         }

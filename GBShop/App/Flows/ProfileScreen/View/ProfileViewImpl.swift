@@ -1,42 +1,35 @@
 //
-//  RegViewImpl.swift
+//  ProfileViewImpl.swift
 //  GBShop
 //
-//  Created by Константин on 19.03.2023.
+//  Created by Константин on 28.03.2023.
 //
 
 import UIKit
 
-
-// MARK: - RegView
-protocol RegView: UIView {
-    var pressedReturn: PressedReturn? { get set }
-    var enteredText: UserEnteredText? { get set }
-    var pressedSignUpButton: VoidClosure? { get set }
-    var userView: UserView { get }
-
-    func update(with inputData: RegViewInputData)
+protocol ProfileView: UIView {
+    var onConfirm: VoidClosure? { get set }
 }
 
-// MARK: - RegViewImpl
-final class RegViewImpl: UIView, RegView {
+final class ProfileViewImpl: UIView, ProfileView {
     // MARK: - Properties
-    var pressedReturn: PressedReturn?
-    var enteredText: UserEnteredText?
-    var pressedSignUpButton: VoidClosure?
+    private var isConfirm = false
+
+    var onConfirm: VoidClosure?
 
     // MARK: - UI Properties
     private(set) lazy var userView: UserView = {
         let view = UserView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.textFieldsIsEnabled(false)
         return view
     }()
-    private lazy var signUpButton: UIButton = {
+    private lazy var editAndConfirmButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Sign Up", for: .normal)
+        button.setTitle("Edit", for: .normal)
         let action = UIAction { [weak self] _ in
-            self?.pressedSignUpButton?()
+            self?.buttonTapped()
         }
         button.addAction(action, for: .touchUpInside)
         return button
@@ -45,7 +38,7 @@ final class RegViewImpl: UIView, RegView {
         let stackView = UIStackView(
             arrangedSubviews: [
                 userView,
-                signUpButton
+                editAndConfirmButton
             ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 8
@@ -72,20 +65,21 @@ final class RegViewImpl: UIView, RegView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Functions
-    func update(with inputData: RegViewInputData) {
-        errorLabel.isHidden = inputData.errorMessage == nil
-        errorLabel.text = inputData.errorMessage ?? ""
+    // MARK: - Private functions
+    private func buttonTapped() {
+        if isConfirm {
+            onConfirm?()
+            userView.textFieldsIsEnabled(false)
+            editAndConfirmButton.setTitle("Edit", for: .normal)
+            isConfirm = false
+        } else {
+            userView.textFieldsIsEnabled()
+            editAndConfirmButton.setTitle("Confirm", for: .normal)
+            isConfirm = true
+        }
     }
 
-    // MARK: - Private functions
     private func setup() {
-        userView.pressedReturn = { [weak self] textField in
-            self?.pressedReturn?(textField)
-        }
-        userView.enteredText = { [weak self] userData in
-            self?.enteredText?(userData)
-        }
         configureUI()
     }
     private func configureUI() {
@@ -106,9 +100,4 @@ final class RegViewImpl: UIView, RegView {
             errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30)
         ])
     }
-}
-
-// MARK: - RegViewInputData
-struct RegViewInputData {
-    let errorMessage: String?
 }

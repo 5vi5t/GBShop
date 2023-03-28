@@ -166,6 +166,17 @@ final class UserView: UIView {
     }
 
     // MARK: - Functions
+    func textFieldsIsEnabled(_ isEnabled: Bool = true) {
+        userIdTextField.isEnabled = isEnabled
+        loginTextField.isEnabled = isEnabled
+        passwordTextField.isEnabled = isEnabled
+        emailTextField.isEnabled = isEnabled
+        genderTextField.isEnabled = isEnabled
+        creditCardTextField.isEnabled = isEnabled
+        bioTextField.isEnabled = isEnabled
+    }
+
+    // MARK: - Private functions
     private func configureUI() {
         backgroundColor = .white
         setupConstraints()
