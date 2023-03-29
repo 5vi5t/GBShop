@@ -8,13 +8,20 @@
 import UIKit
 
 protocol ProfileView: UIView {
+    var pressedReturn: PressedReturn? { get set }
+    var enteredText: UserEnteredText? { get set }
     var onConfirm: VoidClosure? { get set }
+    var userView: UserView { get }
+
+    func update(with inputData: ProfileViewInputData)
 }
 
 final class ProfileViewImpl: UIView, ProfileView {
     // MARK: - Properties
     private var isConfirm = false
 
+    var pressedReturn: PressedReturn?
+    var enteredText: UserEnteredText?
     var onConfirm: VoidClosure?
 
     // MARK: - UI Properties
@@ -65,6 +72,12 @@ final class ProfileViewImpl: UIView, ProfileView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Functions
+    func update(with inputData: ProfileViewInputData) {
+        errorLabel.isHidden = inputData.errorMessage == nil
+        errorLabel.text = inputData.errorMessage ?? ""
+    }
+
     // MARK: - Private functions
     private func buttonTapped() {
         if isConfirm {
@@ -80,6 +93,12 @@ final class ProfileViewImpl: UIView, ProfileView {
     }
 
     private func setup() {
+        userView.pressedReturn = { [weak self] textField in
+            self?.pressedReturn?(textField)
+        }
+        userView.enteredText = { [weak self] userData in
+            self?.enteredText?(userData)
+        }
         configureUI()
     }
     private func configureUI() {
@@ -100,4 +119,9 @@ final class ProfileViewImpl: UIView, ProfileView {
             errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30)
         ])
     }
+}
+
+// MARK: - ProfileViewInputData
+struct ProfileViewInputData {
+    let errorMessage: String?
 }
