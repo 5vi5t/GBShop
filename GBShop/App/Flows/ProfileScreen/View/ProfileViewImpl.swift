@@ -10,7 +10,7 @@ import UIKit
 protocol ProfileView: UIView {
     var pressedReturn: PressedReturn? { get set }
     var enteredText: UserEnteredText? { get set }
-    var onConfirm: VoidClosure? { get set }
+    var pressedEditAndConfirmButton: VoidClosure? { get set }
     var userView: UserView { get }
 
     func update(with inputData: ProfileViewInputData)
@@ -22,7 +22,7 @@ final class ProfileViewImpl: UIView, ProfileView {
 
     var pressedReturn: PressedReturn?
     var enteredText: UserEnteredText?
-    var onConfirm: VoidClosure?
+    var pressedEditAndConfirmButton: VoidClosure?
 
     // MARK: - UI Properties
     private(set) lazy var userView: UserView = {
@@ -36,7 +36,7 @@ final class ProfileViewImpl: UIView, ProfileView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Edit", for: .normal)
         let action = UIAction { [weak self] _ in
-            self?.buttonTapped()
+            self?.pressedEditAndConfirmButton?()
         }
         button.addAction(action, for: .touchUpInside)
         return button
@@ -76,21 +76,12 @@ final class ProfileViewImpl: UIView, ProfileView {
     func update(with inputData: ProfileViewInputData) {
         errorLabel.isHidden = inputData.errorMessage == nil
         errorLabel.text = inputData.errorMessage ?? ""
+
+        guard let title = inputData.buttonTitle else { return }
+        editAndConfirmButton.setTitle(title, for: .normal)
     }
 
     // MARK: - Private functions
-    private func buttonTapped() {
-        if isConfirm {
-            onConfirm?()
-            userView.textFieldsIsEnabled(false)
-            editAndConfirmButton.setTitle("Edit", for: .normal)
-            isConfirm = false
-        } else {
-            userView.textFieldsIsEnabled()
-            editAndConfirmButton.setTitle("Confirm", for: .normal)
-            isConfirm = true
-        }
-    }
 
     private func setup() {
         userView.pressedReturn = { [weak self] textField in
@@ -124,4 +115,5 @@ final class ProfileViewImpl: UIView, ProfileView {
 // MARK: - ProfileViewInputData
 struct ProfileViewInputData {
     let errorMessage: String?
+    let buttonTitle: String?
 }

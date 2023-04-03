@@ -121,6 +121,7 @@ class RegController<View: RegView>: BaseViewController<View> {
     private func setupUI() {
         view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = false
+        title = "Register"
     }
 
     private func addTap() {

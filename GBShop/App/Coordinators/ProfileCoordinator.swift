@@ -27,6 +27,7 @@ final class ProfileCoordinator: BaseCoordinator {
 
     private func showProfile() {
         let profileScreen = screenFactory.makeProfileScreen()
+        profileScreen.onEditProfile = { [weak self] in self?.finishFlow?() }
         router.setRootModule(profileScreen)
     }
 }

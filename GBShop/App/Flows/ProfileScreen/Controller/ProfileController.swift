@@ -10,6 +10,10 @@ import UIKit
 final class ProfileController<View: ProfileView>: BaseViewController<View> {
     // MARK: - Properties
     private let editProfile: EditProfileRequestFactory
+    private var isConfirm = false
+    private var editProfileCredentials: EditProfileCredentials?
+
+    var onEditProfile: VoidClosure?
     
     // MARK: - Construction
     init(requestFactory: RequestFactory) {
@@ -27,9 +31,91 @@ final class ProfileController<View: ProfileView>: BaseViewController<View> {
         setupUI()
         addTap()
         nextTextField()
+        addEditProfileData()
+        pressedEditAndConfirmButton()
     }
 
     // MARK: - Functions
+    private func makeChangeUserDataModel(_ creds: EditProfileCredentials) -> ChangeUserDataModel {
+        return ChangeUserDataModel(
+            userId: creds.userId,
+            username: creds.login,
+            password: creds.password,
+            email: creds.email,
+            gender: creds.gender,
+            creditCard: creds.creditCard,
+            bio: creds.bio)
+    }
+
+    private func addEditProfileData() {
+        rootView.enteredText = { [weak self] userData in
+            guard let userData else { return }
+            self?.editProfileCredentials = EditProfileCredentials(
+                userId: userData.userId,
+                login: userData.login,
+                password: userData.password,
+                email: userData.email,
+                gender: userData.gender,
+                creditCard: userData.creditCard,
+                bio: userData.bio)
+        }
+    }
+
+    private func pressedEditAndConfirmButton() {
+        rootView.pressedEditAndConfirmButton = { [weak self] in
+            guard let self else { return }
+            if self.isConfirm {
+                changeUserData()
+                let viewInputData = makeProfileViewInputData(error: nil, title: "Edit")
+                rootView.update(with: viewInputData)
+                rootView.userView.textFieldsIsEnabled(false)
+                isConfirm = false
+            } else {
+                let viewInputData = makeProfileViewInputData(error: nil, title: "Confirm")
+                rootView.update(with: viewInputData)
+                rootView.userView.textFieldsIsEnabled()
+                isConfirm = true
+            }
+        }
+    }
+
+    private func changeUserData() {
+        guard
+            let creds = editProfileCredentials
+        else {
+            return
+        }
+        let model = makeChangeUserDataModel(creds)
+        editProfile.changeUserData(model: model) { [weak self] response in
+            switch response.result {
+            case .success(let result):
+                if result.result == 1 {
+                    self?.onEditProfile?()
+                    return
+                }
+                guard
+                    let viewInputData = self?.makeProfileViewInputData(error: result.errorMessage, title: nil)
+                else { return }
+                DispatchQueue.main.async {
+                    self?.rootView.update(with: viewInputData)
+                }
+            case .failure(let error):
+                guard
+                    let viewInputData = self?.makeProfileViewInputData(error: error.errorDescription, title: nil)
+                else { return }
+                DispatchQueue.main.async {
+                    self?.rootView.update(with: viewInputData)
+                }
+            }
+        }
+    }
+
+    private func makeProfileViewInputData(error: String?, title: String?) -> ProfileViewInputData {
+        return ProfileViewInputData(
+            errorMessage: error,
+            buttonTitle: title)
+    }
+
     private func nextTextField() {
         rootView.pressedReturn = { [weak self] textField in
             guard let userView = self?.rootView.userView else { return }
@@ -56,6 +142,7 @@ final class ProfileController<View: ProfileView>: BaseViewController<View> {
     private func setupUI() {
         view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = false
+        title = "Profile"
     }
 
     private func addTap() {
@@ -65,5 +152,45 @@ final class ProfileController<View: ProfileView>: BaseViewController<View> {
 
     @objc private func hideKeyboard() {
         view.endEditing(true)
+    }
+}
+
+// MARK: - EditProfileData
+struct EditProfileCredentials {
+    let userId: Int
+    let login: String
+    let password: String
+    let email: String
+    let gender: String
+    let creditCard: String
+    let bio: String
+
+    init?(
+        userId: Int,
+        login: String,
+        password: String,
+        email: String,
+        gender: String,
+        creditCard: String,
+        bio: String
+    ) {
+        guard
+            userId > 0,
+            !login.isEmpty,
+            !password.isEmpty,
+            !email.isEmpty,
+            !gender.isEmpty,
+            !creditCard.isEmpty,
+            !bio.isEmpty
+        else {
+            return nil
+        }
+        self.userId = userId
+        self.login = login
+        self.password = password
+        self.email = email
+        self.gender = gender
+        self.creditCard = creditCard
+        self.bio = bio
     }
 }
