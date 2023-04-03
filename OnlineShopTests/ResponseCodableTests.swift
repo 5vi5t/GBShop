@@ -1,0 +1,61 @@
+//
+//  ResponseCodableTests.swift
+//  OnlineShopTests
+//
+//  Created by Константин on 14.02.2023.
+//
+
+import XCTest
+import Alamofire
+@testable import OnlineShop
+
+struct PostStub: Codable {
+    let userId: Int
+    let id: Int
+    let title: String
+    let body: String
+}
+
+enum ApiErrorStub: Error {
+    case fatalError
+}
+
+struct ErrorParserStub: AbstractErrorParser {
+    func parse(_ result: Error) -> Error {
+        return ApiErrorStub.fatalError
+    }
+    
+    func parse(response: HTTPURLResponse?, data: Data?, error: Error?) -> Error? {
+        return error
+    }
+}
+
+final class ResponseCodableTests: XCTestCase {
+    let expectation = XCTestExpectation(description: #function)
+    // swiftlint:disable:next implicitly_unwrapped_optional
+    var errorParser: ErrorParserStub!
+
+    // swiftlint:disable:next overridden_super_call
+    override func setUpWithError() throws {
+        errorParser = ErrorParserStub()
+    }
+
+    // swiftlint:disable:next overridden_super_call
+    override func tearDownWithError() throws {
+        errorParser = nil
+    }
+    
+    func testShouldDownloadAndParse() {
+        AF.request("https://jsonplaceholder.typicode.com/posts/1")
+            .responseCodable(errorParser: errorParser) { [weak self] (response: DataResponse<PostStub, AFError>) in
+                switch response.result {
+                case .success:
+                    break
+                case .failure:
+                    XCTFail()
+                }
+                self?.expectation.fulfill()
+            }
+        wait(for: [expectation], timeout: 10.0)
+    }
+}
