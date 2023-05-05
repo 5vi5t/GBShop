@@ -82,7 +82,6 @@ final class ProfileViewImpl: UIView, ProfileView {
     }
 
     // MARK: - Private functions
-
     private func setup() {
         userView.pressedReturn = { [weak self] textField in
             self?.pressedReturn?(textField)
@@ -92,10 +91,12 @@ final class ProfileViewImpl: UIView, ProfileView {
         }
         configureUI()
     }
+
     private func configureUI() {
         backgroundColor = .white
         setupConstraints()
     }
+
     private func setupConstraints() {
         addSubview(stackView)
         addSubview(errorLabel)
