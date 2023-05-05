@@ -41,6 +41,7 @@ protocol ScreenFactory {
     func makeAuthScreen() -> AuthController<AuthViewImpl>
     func makeRegScreen() -> RegController<RegViewImpl>
     func makeProfileScreen() -> ProfileController<ProfileViewImpl>
+    func makeShowcaseScreen() -> ShowcaseController<ShowcaseViewImpl>
 }
 
 final class ScreenFactoryImpl: ScreenFactory {
@@ -63,12 +64,17 @@ final class ScreenFactoryImpl: ScreenFactory {
     func makeProfileScreen() -> ProfileController<ProfileViewImpl> {
         ProfileController(requestFactory: di.requestFactory)
     }
+
+    func makeShowcaseScreen() -> ShowcaseController<ShowcaseViewImpl> {
+        ShowcaseController(requestFactory: di.requestFactory)
+    }
 }
 
 protocol CoordinatorFactory {
     func makeApplicationCoordinator(router: Router) -> ApplicationCoordinator
     func makeAuthCoordinator(router: Router) -> AuthCoordinator
     func makeProfileCoordinator(router: Router) -> ProfileCoordinator
+    func makeShowcaseCoordinator(router: Router) -> ShowcaseCoordinator
 }
 
 final class CoordinatorFactoryImpl: CoordinatorFactory {
@@ -91,5 +97,9 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
 
     func makeProfileCoordinator(router: Router) -> ProfileCoordinator {
         return ProfileCoordinator(router: router, screenFactory: screenFactory)
+    }
+
+    func makeShowcaseCoordinator(router: Router) -> ShowcaseCoordinator {
+        return ShowcaseCoordinator(router: router, screenFactory: screenFactory)
     }
 }
